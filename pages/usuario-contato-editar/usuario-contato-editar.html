@@ -1,0 +1,61 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <!-- end ion-buttons -->
+    <ion-title>Editar Contato</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="new-content bg-multiple-2">
+  <form (ngSubmit)="salvaContato(form)" novalidate #form="ngForm">
+    <ion-card>
+      <ion-card-content class="" *ngIf="tipoContato">
+        <h3 class="color-default font-roboto-black font-16 text-truncate m-0 text-center">{{tipoContato?.titulo}}</h3>
+
+        <div class="d-flex flex-column mb-2" *ngFor="let k of objContato">
+          <label class="color-default font-14 font-roboto-medium text-uppercase">{{k.name}}:</label>
+          <input [type]="k.inputType" required [placeholder]="k.placeholder" [id]="k.name" [name]="k.name" [pattern]="k.pattern" [(ngModel)]="k.value"
+            class="form-control" autocomplete="off" [class.input-invalid]="!isValid(form, k.name) && form.submitted" />
+        </div>
+      </ion-card-content>
+
+      <!-- <ion-card-content class="">
+      <h3 class="color-default font-roboto-black font-16 text-truncate text-center m-0">Carai Titulo</h3>
+
+      <div class="d-flex flex-column mb-2">
+        <label class="color-default font-14 font-roboto-medium">Tel:</label>
+        <input type="tel" placeholder="tel" class="form-control" autocomplete="off" />
+      </div>
+    </ion-card-content> -->
+    </ion-card>
+
+
+    <!-- <ion-content padding>
+
+
+  <div>
+    <h3>Titulo</h3>
+
+    <ion-item>
+      <ion-label stacked color="primary" text-uppercase>Carai</ion-label>
+      <ion-input [type]="tel" [placeholder]="tel" [id]="name"></ion-input>
+    </ion-item>
+
+  </div>
+
+  <div *ngIf="tipoContato">
+    <h3>{{tipoContato.titulo}}</h3>
+
+    <ion-item *ngFor="let k of objContato">
+      <ion-label stacked color="primary" text-uppercase>{{k.name}}</ion-label>
+      <ion-input [type]="k.inputType" [placeholder]="k.placeholder" [id]="k.name" [pattern]="k.pattern" [(ngModel)]="k.value"></ion-input>
+    </ion-item>
+
+  </div> -->
+    <div padding>
+      <button ion-button type="submit" color="primary" block>Salvar</button>
+      <button type="button" ion-button color="danger" block (click)="deleteContato()" *ngIf="contatoId">Apagar Contato</button>
+    </div>
+  </form>
+</ion-content>

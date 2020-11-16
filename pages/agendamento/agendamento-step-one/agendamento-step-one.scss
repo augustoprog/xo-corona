@@ -1,0 +1,21 @@
+// @import "../../../theme/default";
+page-agendamento-step-one {
+  .bg-multiple-default {
+    height: 38px;
+    position: absolute;
+    width: 100%;
+  }
+  // ion-header::before {
+  //   @extend .bg-multiple-default;
+  //   height: 38px;
+  //   position: absolute;
+  //   width: 100%;
+  //   content: " ";
+  // }
+}
+.box-requisito {
+  border: 1px solid #707070;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+}

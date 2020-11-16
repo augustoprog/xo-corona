@@ -1,0 +1,11 @@
+page-fale-conosco {
+    .item {
+        padding: 0;
+        width: 100%;
+        .item-inner {
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+}

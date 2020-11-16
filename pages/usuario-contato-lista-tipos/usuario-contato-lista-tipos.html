@@ -1,0 +1,36 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <!-- end ion-buttons -->
+    <ion-title>Tipos de Contato</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <div padding class="bg-multiple-simple pb-0">
+  </div>
+</ion-header>
+
+
+
+<ion-content padding class="new-content bg-avatar-white">
+  <ion-list class="list-custom ">
+    <ion-item *ngFor="let tc of tiposContatos" (click)="addContato(tc.id,tc)">
+      <div class="col-12 d-flex flex-column">
+        <h3 class="color-default font-roboto-black font-16 text-truncate m-0">{{tc.titulo}}</h3>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<!-- <ion-content padding>
+
+  <ion-list>
+
+    <ion-item *ngFor="let tc of tiposContatos" (click)="addContato(tc.id)">
+
+      {{tc.titulo}}
+
+    </ion-item>
+
+
+  </ion-list>
+
+</ion-content> -->

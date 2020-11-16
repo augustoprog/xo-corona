@@ -1,0 +1,56 @@
+<!--
+  Generated template for the AgendamentoStepOnePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <div class="bg-multiple-default"></div>
+  <!-- end ion-navbar -->
+  <ion-card class="new-content">
+    <ion-card-content>
+      <step-default [active]="1"></step-default>
+      <!-- end step-default -->
+      <div>
+        <p
+          class="mb-2 font-14 font-roboto-regular color-default text-center pt-2"
+        >
+          Selecione o serviço que deseja agendar
+        </p>
+      </div>
+      <div class="searchbar-custom px-0">
+        <ion-searchbar
+          class="px-0 pt-0"
+          placeholder="Buscar"
+          (ionInput)="filter($event.target.value)"
+        ></ion-searchbar>
+      </div>
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white">
+  <ion-list class="list-custom mt-0" [virtualScroll]="servicosFiltered">
+    <ion-item
+      text-wrap
+      *virtualItem="let item"
+      (click)="goToConfirmation(item)"
+    >
+      <div class="col-12 d-flex flex-column">
+        <h3
+          class="color-default font-roboto-black font-16"
+          [textContent]="item.displayValue"
+        ></h3>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<!-- end ion-content -->

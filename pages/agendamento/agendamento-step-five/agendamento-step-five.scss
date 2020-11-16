@@ -1,0 +1,21 @@
+@media screen and (device-aspect-ratio: 40/71) {
+  .my-calendar {
+    .days {
+      .on-selected {
+        p {
+          font-size: $font-18;
+        }
+      }
+    }
+    button {
+      &.days-btn {
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+        p {
+          font-size: $font-14;
+        }
+      }
+    }
+  }
+}

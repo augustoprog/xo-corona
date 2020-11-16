@@ -1,0 +1,28 @@
+<ion-content padding>
+    <div class="main content-form">
+        <div class="content-middle">
+            <h1 class="content-logo">
+                <img src="assets/logo-pe-mobile.svg" class="img-fluid" />
+            </h1>
+            <h2 class="title">
+                <span class="title-image"><img src='assets/images/info.png' /></span>
+                <span class="title-text">Informações</span>
+            </h2>
+            <div class="content-message font-16">
+                <p>Este cadastro permite o acesso aos seguintes serviços do Governo do Estado:
+                    <a href="https://pecidadao.pe.gov.br/#/cidadao-conectado">Cidadão Conectado</a>,
+                    <a href="https://pecidadao.pe.gov.br/#/alerta-celular">Alerta Celular</a>,
+                    Todos por Pernambuco Digital, PE Cidadão Mobile.
+                    <p>Caso você já tenha se cadastrado em um desses serviços, não será necessário realizar um novo
+                        cadastro.</p>
+            </div>
+            <ion-list>
+                <ion-item>
+                    <ion-checkbox [(ngModel)]="noShowAgain"></ion-checkbox>
+                    <ion-label class="font-16">Não exibir novamente</ion-label>
+                </ion-item>
+            </ion-list>
+            <button ion-button round color="primary" class="mb-4" block (click)="next()">Ok</button>
+        </div>
+    </div>
+</ion-content>

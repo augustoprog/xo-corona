@@ -1,0 +1,41 @@
+<!--
+  Generated template for the PinSegurancaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>
+      RG Digital
+    </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <h2 class="font-roboto-black text-center font-15 color-default mb-2">Digite o PIN de Segurança</h2>
+      <!-- <p class="font-roboto-regular font-14 color-default mb-3">Proident esse sit ipsum ullamco ea proident tempor reprehenderit labore aliquip cupidatat ea fugiat.</p> -->
+
+      <form #form="ngForm" novalidate (submit)="onSubmit(form)">
+        <div class="input-group mb-4">
+          <input #p1 type="tel" [class.input-invalid]="isInvalidModel(form,pass1Model)" #pass1Model="ngModel" [(ngModel)]="pin" name="pin"
+            class="form-control password" placeholder="*PIN" autocomplete="off" required maxlength="6" />
+          <div class="input-group-append" (touchstart)="showPassword(p1)" (touchend)="hidePassword(p1)">
+            <span [class.input-invalid]="isInvalidModel(form,pass1Model)" class="input-group-text ion ion-eye color-blue"></span>
+          </div>
+        </div>
+        <button ion-button color="primary" class="mb-3" block>Enviar</button>
+        <button type="button" ion-button round class="border border-primary" (click)="cancelar()" clear block>Cancelar</button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

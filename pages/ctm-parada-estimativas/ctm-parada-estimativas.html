@@ -1,0 +1,179 @@
+<ion-header class="new-header">
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title class="text-uppercase">Grande Recife</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="new-content bg-multiple-2 bg-avatar-white">
+    <ng-container *ngIf="!error || !error2; else errorDiv">
+        <ion-card>
+            <ion-card-content>
+
+                <div class="row mb-2 align-items-stretch">
+                    <div class="col-10 d-flex align-items-center">
+                        <div class="bg-light-gray round-5 px-2 flex-1 py-1">
+                            <span class="font-roboto-bold font-15 color-default">Parada:</span>
+                            <span class="font-22 font-roboto-regular color-default text-uppercase"
+                                [textContent]="parada?.label"></span>
+                        </div>
+                    </div>
+                    <div class="col p-0">
+                        <button ion-button clear class="p-0 m-0 btn-star" *ngIf="checaParadaFavorita(parada)==true"
+                            (click)="removeParadaFavorita(parada)">
+                            <span class="ion-ios-star ion font-44 color-yellow"></span>
+                        </button>
+                        <button ion-button clear class="p-0 m-0 btn-star" *ngIf="checaParadaFavorita(parada)==false"
+                            (click)="addParadaFavorita(parada)">
+                            <span class="ion-ios-star-outline ion color-light-gray-5 font-44 color-dark-gray"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <hr class="my-1">
+
+                <div class="d-flex flex-column mb-3">
+                    <span class="font-roboto-black font-15 color-default">Endereço:</span>
+                    <div class="d-flex">
+                        <span class="ion-ios-location color-default font-16 line-height-default mr-1"></span>
+                        <span class="text color-default font-weight-normal">
+                            {{ enderecoParada }}
+                        </span>
+                    </div>
+                </div>
+
+                <ng-template #semDadosParada>
+                    <p class="font-roboto-black font-15 color-default">Aguardando disponibilização das linhas e
+                        paradas.</p>
+                </ng-template>
+
+                <div class="custom-segment"
+                    *ngIf="estimativas?.length > 0 || linhasDetalhes?.length > 0; else semDadosParada">
+                    <div class="segment-header">
+                        <ion-segment [(ngModel)]="visualizarInfoParada">
+                            <ng-container *ngIf="estimativas?.length > 0">
+                                <ion-segment-button value="horarios" (click)="visualizarInfoParada='horarios'">
+                                    Horários
+                                </ion-segment-button>
+                            </ng-container>
+                            <ng-container *ngIf="linhasDetalhes?.length > 0">
+                                <ion-segment-button value="linhas" (click)="visualizarInfoParada='linhas'">
+                                    Linhas
+                                </ion-segment-button>
+                            </ng-container>
+                        </ion-segment>
+                    </div>
+
+                    <div [ngSwitch]="visualizarInfoParada" class="segment-content pb-3">
+
+                        <div *ngSwitchCase="'horarios'">
+                            <ion-list class="lista-paradas pb-0 pt-0" padding>
+                                <ion-item *ngFor="let estimativa of estimativas" class="item-segmento">
+                                    <div class="d-flex flex-column mb-2" *ngIf="estimativa?.destinationName">
+                                        <span class="font-roboto-bold font-13 color-white">Destino:</span>
+                                        <div>
+                                            <span class="ion ion-ios-location color-yellow font-12"></span>
+                                            <span class="color-white font-roboto-regular font-10 font-weight-normal">
+                                                {{ estimativa?.destinationName }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <div class="col p-0 mr-1 text-center text-m-truncate">
+                                            <span class="font-roboto-bold font-13 color-white">Linha</span>
+                                            <div class="d-flex flex-column list-mark">
+                                                <span class="brd-b-default list-mark-item">
+                                                    <span class="ion-android-bus font-18 color-default mr-1"></span>
+                                                </span>
+                                                <span class="font-roboto-bold font-16 color-default list-mark-item">
+                                                    Nº
+                                                    <span *ngIf="estimativa"
+                                                        class="font-roboto-bold font-16 color-default">
+                                                        {{ getLabelLinha(estimativa.line) }}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col p-0 mr-1 text-center text-m-truncate">
+                                            <span class="font-roboto-bold font-13 color-white">Chegada
+                                                Prevista</span>
+                                            <div class="d-flex flex-column list-mark">
+                                                <span class="brd-b-default list-mark-item">
+                                                    <span
+                                                        class="ion-android-calendar font-18 color-default mr-1"></span>
+                                                    <span
+                                                        class="font-roboto-regular font-12 color-default align-self-end">
+                                                        {{ estimativa?.arrivalTime | date: 'dd/MM/yyyy' }}
+                                                    </span>
+                                                </span>
+                                                <span class="font-roboto-bold font-16 color-default list-mark-item">
+                                                    <span class="ion-android-time font-18 color-default mr-1"></span>
+                                                    <span
+                                                        class="font-roboto-regular font-12 color-default align-self-end">
+                                                        {{ estimativa?.arrivalTime | date: 'HH:mm'}}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col p-0 text-center text-m-truncate">
+                                            <span class="font-roboto-bold font-13 color-white">
+                                                Atualizado em
+                                            </span>
+                                            <div class="d-flex flex-column list-mark">
+                                                <span class="brd-b-default list-mark-item">
+                                                    <span
+                                                        class="ion-android-calendar font-18 color-default mr-1"></span>
+                                                    <span
+                                                        class="font-roboto-regular font-12 color-default align-self-end">
+                                                        {{ estimativa?.instant | date: 'dd/MM/yyyy' }}
+                                                    </span>
+                                                </span>
+                                                <span class="font-roboto-bold font-16 color-default list-mark-item">
+                                                    <span class="ion-android-time font-18 color-default mr-1"></span>
+                                                    <span
+                                                        class="font-roboto-regular font-12 color-default align-self-end">
+                                                        {{ estimativa?.instant | date: 'HH:mm' }}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-item>
+                            </ion-list>
+
+
+                        </div>
+
+                        <div *ngSwitchCase="'linhas'">
+                            <ul class="lista-linhas pb-0 pt-0" padding>
+                                <li *ngFor="let linha of linhasDetalhes" class="linha-item">
+                                    <p class="font-roboto-bold font-14 color-white mb-0">
+                                        {{linha.nombre}}
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
+
+
+
+    <ng-template #errorDiv>
+        <ion-card>
+            <ion-card-content>
+                <div class="font-roboto-black text-center font-15 color-default mb-3">Nenhuma
+                    informação encontrada.</div>
+            </ion-card-content>
+        </ion-card>
+    </ng-template>
+
+</ion-content>

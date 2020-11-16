@@ -1,0 +1,82 @@
+<!--
+  Generated template for the MenuCtmPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>GRANDE RECIFE</ion-title>
+        <!-- end title -->
+    </ion-navbar>
+    <!-- end ion-nav-bar -->
+</ion-header>
+
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+    <ion-card class="mb-3">
+        <ion-card-content (click)="openPage('CtmListarLinhasPage')" class="py-2">
+            <div class="d-flex align-items-center justify-content-between">
+                <h2 class="font-roboto-bold font-18 color-default mb-0">Linhas e Veículos</h2>
+                <i class="ion-plus-circled font-48 color-blue icon-plus-shadow"></i>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <!-- linhas preferidas-->
+    <div class="mb-5">
+        <div class="font-roboto-black font-18 text-center my-3 color-default">Linhas Favoritas</div>
+        <div *ngIf="MinhasLinhasFavoritas && MinhasLinhasFavoritas.length; else divSemLinhas">
+            <ion-card *ngFor="let item of MinhasLinhasFavoritas" (click)="openPageIntinerario(item.label, item.nombre)">
+                <ion-card-content class="py-1">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="font-roboto-black font-15 color-default mb-0 text-truncate" [textContent]="item.nombre">
+                        </span>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </div>
+        <ng-template #divSemLinhas>
+            <span class="font-14 font-roboto-regular ml-3">
+                <em>Nenhuma linha adicionada aos favoritos.</em>
+            </span>
+        </ng-template>
+    </div>
+
+    <!--paradas-->
+    <ion-card class="mb-3">
+        <ion-card-content (click)="openPage('CtmMapaParadasPage')" class="py-2">
+            <div class="d-flex align-items-center justify-content-between">
+                <h2 class="font-roboto-bold font-18 color-default mb-0">Mapa de Paradas / Estações</h2>
+                <i class="ion-plus-circled font-48 color-blue icon-plus-shadow"></i>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <!-- paradas preferidas-->
+    <div class="mb-3">
+        <div class="font-roboto-black font-18 text-center my-3 color-default">Paradas Favoritas</div>
+        <div *ngIf="MinhasParadasFavoritas && MinhasParadasFavoritas.length; else divSemParadas">
+            <ion-card *ngFor="let item of MinhasParadasFavoritas" (click)="verParada(item)">
+                <ion-card-content class="py-1">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex flex-column">
+                            <span class="font-roboto-black font-15 color-default mb-0 text-truncate">
+                                Parada {{ item.label }}
+                            </span>
+                            <span class="font-roboto-regular color-default font-9">
+                                {{ item.endereco }}
+                            </span>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </div>
+        <ng-template #divSemParadas>
+            <span class="font-14 font-roboto-regular ml-3">
+                <em>Nenhuma parada adicionada aos favoritos.</em>
+            </span>
+        </ng-template>
+    </div>
+</ion-content>

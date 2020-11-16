@@ -1,0 +1,19 @@
+page-detran-consulta-veiculo {
+    .item {
+        background-color: transparent;
+        padding: 0;
+        width: 100%;
+        .item-inner {
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+    ion-input {
+        padding: 0 !important;
+        input {
+            padding: 0.8rem !important;
+            margin: 0 !important;
+        }
+    }
+}

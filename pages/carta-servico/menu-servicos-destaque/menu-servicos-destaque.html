@@ -1,0 +1,30 @@
+<ion-header class="new-header">
+    <ion-navbar class="text-center">
+        <button ion-button menuToggle>
+            <ion-icon name="navicon" class="font-32"></ion-icon>
+        </button>
+        <ion-title>Carta de Serviços</ion-title>
+    </ion-navbar>
+    <div padding class="bg-multiple-default py-0">
+        <div class="searchbar-custom shadow-default">
+            <ion-searchbar placeholder="Buscar" (ionInput)="buscarServico()" [(ngModel)]="termoServico"></ion-searchbar>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content class="new-content sem-line-footer bg-avatar-white">
+    <span *ngIf="semConexao; else servicos" class="error-message">
+        <i class="fa fa-exclamation-triangle"></i> Sem conexão com a internet
+    </span>
+    <ng-template #servicos>
+        <span class="font-14 ml-3">
+            <em>* <ion-badge color="primary">www</ion-badge> serviço 100% digital</em>
+        </span>
+        <ion-spinner [class.hidden]="!buscandoResultados"></ion-spinner>
+        <cmp-lista-servicos titulo="Resultados" [servicos]="servicosBusca" (clickServico)="abrirServico($event)"
+            (clickWWWServico)="abrirWWWServico($event)"></cmp-lista-servicos>
+        <cmp-lista-servicos titulo="Serviços em Destaque" [servicos]="servicosDestaque" (clickServico)="abrirServico($event)"
+            (clickWWWServico)="abrirWWWServico($event)"></cmp-lista-servicos>
+    </ng-template>
+
+</ion-content>

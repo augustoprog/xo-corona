@@ -1,0 +1,88 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title [textContent]="titleAvaliacao">
+    </ion-title>
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+
+
+<ion-content padding class="new-content bg-multiple-2 bg-avatar-white">
+  <ion-card>
+    <ion-card-content id="card">
+      <ion-row>
+        <span class="font-roboto-bold font-16 color-default text-left mb-2" [textContent]="servico?.nome">
+        </span>
+      </ion-row>
+      <ion-row>
+        <span class="font-roboto-bold font-16 color-default text-left mb-2"
+          [textContent]="servico?.categoria?.orgao?.nome"></span>
+      </ion-row>
+      <ion-row class="justify-content-center">
+        <span class="font-roboto-bold font-13 color-default mb-2">O que você achou do serviço?</span>
+      </ion-row>
+      <ion-row class="justify-content-center font-50">
+        <div class="justify-content-center text-center width50">
+          <ion-icon class="fa fa-star-o font-size-40" *ngIf="avaliacao < 1" (click)="avaliar(1)"></ion-icon>
+          <ion-icon class="fa fa-star font-size-40" *ngIf="avaliacao >= 1" (click)="retirarAvaliacao(1)"></ion-icon>
+        </div>
+        <div class="justify-content-center text-center width70">
+          <ion-icon class="fa fa-star-o font-size-40" aria-hidden="true" *ngIf="avaliacao < 2" (click)="avaliar(2)">
+          </ion-icon>
+          <ion-icon class="fa fa-star font-size-40" aria-hidden="true" *ngIf="avaliacao >= 2"
+            (click)="retirarAvaliacao(2)">
+          </ion-icon>
+        </div>
+        <div class="justify-content-center text-center width70">
+          <ion-icon class="fa fa-star-o font-size-40" aria-hidden="true" *ngIf="avaliacao < 3" (click)="avaliar(3)">
+          </ion-icon>
+          <ion-icon class="fa fa-star font-size-40" aria-hidden="true" *ngIf="avaliacao >= 3"
+            (click)="retirarAvaliacao(3)">
+          </ion-icon>
+        </div>
+        <div class="justify-content-center text-center width70">
+          <ion-icon class="fa fa-star-o font-size-40" aria-hidden="true" *ngIf="avaliacao < 4" (click)="avaliar(4)">
+          </ion-icon>
+          <ion-icon class="fa fa-star font-size-40" aria-hidden="true" *ngIf="avaliacao >= 4"
+            (click)="retirarAvaliacao(4)">
+          </ion-icon>
+        </div>
+        <div class="justify-content-center text-center width50">
+          <ion-icon class="fa fa-star-o font-size-40" aria-hidden="true" *ngIf="avaliacao < 5" (click)="avaliar(5)">
+          </ion-icon>
+          <ion-icon class="fa fa-star font-size-40" aria-hidden="true" *ngIf="avaliacao == 5"
+            (click)="retirarAvaliacao(5)">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <ion-row class="justify-content-center mt-3">
+        <span class="font-roboto-bold font-13 color-default mb-2">O que podemos melhorar?</span>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4 *ngFor="let melhoramento of melhoramentos">
+          <ng-container *ngIf="melhoramento.visible">
+            <div
+              [className]="!melhoramento.check ? 'melhoramento melhoramento-desmarcado' : 'melhoramento melhoramento-marcado'"
+              (click)="marcarMelhoramento(melhoramento)">
+              {{melhoramento.nome}}
+            </div>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+      <ion-row class="justify-content-center mt-3">
+        <span class="font-roboto-bold font-13 color-default mb-2">Quer comentar sua avaliação?</span>
+      </ion-row>
+      <ion-row>
+        <textarea class="font-13 rounded ml-2 mr-2 textarea" name="comentario" [(ngModel)]="comentario"
+          (tap)="$event.preventDefault()" maxlength="4000">
+          </textarea>
+      </ion-row>
+      <ion-row class="justify-content-center" id="button" style="padding-bottom: 0px;">
+        <button ion-button outline (click)="enviarAvaliacao()" [disabled]="avaliacao < 1">Enviar Avaliação</button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,191 @@
+<!--
+  Generated template for the MenuAlertaCelularPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle class="ml-auto d-block">
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>SDS - Alerta Celular</ion-title>
+  </ion-navbar>
+  <!-- <div padding class="bg-multiple-default py-0">
+    <div class="searchbar-custom shadow-default">
+      <ion-searchbar type="tel" placeholder="Buscar" [(ngModel)]="search" (input)="filterCelulares()" (ionClear)="clearSearch()"></ion-searchbar>
+    </div>
+  </div> -->
+</ion-header>
+
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card class="mb-3">
+    <ion-card-content (click)="openPage()" class="py-2">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="font-roboto-bold font-18 color-default mb-0">Adicionar Aparelho</h2>
+        <i class="ion-plus-circled font-48 color-blue icon-plus-shadow"></i>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="mb-5">
+    <div class="font-roboto-black font-18 text-center my-3 color-default">Aparelhos Cadastrados</div>
+    <div>
+      <ion-card *ngFor="let aparelho of meusAparelhos">
+        <ion-card-content>
+          <div class="mb-2" [class.splitter]="i!=0" [class.pt-3]="i!=0" *ngFor="let aparelhoIMEI of aparelho.aparelhoIMEI; let i = index">
+            <div class="font-roboto-black font-15 color-default mb-0 text-truncate d-flex justify-content-between align-items-center">
+              <span class="flex-1 phone-box d-flex align-items-center px-1 col-6">
+                <i class="font-32 color-default ion-iphone"></i>
+                <span class="font-roboto-medium font-15 font-flex color-default ml-2" [textContent]="applyMask(aparelhoIMEI.numero)"></span>
+              </span>
+              <div class="d-flex flex-1 align-items-center justify-content-end" *ngIf="i==0">
+                <img class="img-phone" src="assets/images/edit.png" (click)="editar(aparelho)" />
+                <img class="img-phone" src="assets/images/alert.png" (click)="alertar(aparelho)" />
+                <img (click)="confirmDelete(aparelho)" class="img-phone" src="assets/images/delete.png" *ngIf="aparelho.situacaoAlerta == 0"
+                />
+              </div>
+            </div>
+            <div class="d-flex mt-2" *ngIf="i==0">
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Marca:</div>
+                <div class="font-roboto-regular color-default font-12" [textContent]="aparelho.marca.label"></div>
+              </div>
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Modelo:</div>
+                <div class="font-roboto-regular color-default font-12" [textContent]="aparelho.modelo"> </div>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Operadora:</div>
+                <div class="font-roboto-regular color-default font-12" [textContent]="aparelhoIMEI.operadora.label"></div>
+              </div>
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Serial:</div>
+                <div class="font-roboto-regular color-default font-12" [textContent]="aparelho.serial" *ngIf="aparelho.serial"></div>
+                <div class="font-roboto-regular color-default font-12" *ngIf="!aparelho.serial">Não informado</div>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="">
+                <div class="font-roboto-bold color-default font-15">IMEI:</div>
+                <div class="d-flex align-items-center font-roboto-regular color-default font-20">
+                  <i class="font-32 color-default ion-document-text"></i>
+                  <span class="ml-2" [textContent]="aparelhoIMEI.imei"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="mb-2">
+            <div class="splitter pt-3 font-roboto-black font-15 color-default mb-0 text-truncate d-flex justify-content-between align-items-center">
+              <span class="phone-box d-flex align-items-center px-2">
+                <i class="font-32 color-default ion-iphone"></i>
+                <span class="font-roboto-medium font-18 color-default ml-2">81 987654321</span>
+              </span>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Marca:</div>
+                <div class="font-roboto-regular color-default font-12">APPLE</div>
+              </div>
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Modelo:</div>
+                <div class="font-roboto-regular color-default font-12">IPHONE 6S</div>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Operadora:</div>
+                <div class="font-roboto-regular color-default font-12">TIM</div>
+              </div>
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Serial:</div>
+                <div class="font-roboto-regular color-default font-12">Não informado</div>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="">
+                <div class="font-roboto-bold color-default font-15">IMEI:</div>
+                <div class="d-flex align-items-center font-roboto-regular color-default font-20">
+                  <i class="font-32 color-default ion-document-text"></i>
+                  <span class="ml-2">990000862471854</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="splitter pt-3">
+            <div class="font-roboto-bold color-default font-15">Situação de Alerta:
+            </div>
+            <div class="border-green font-24 text-center font-roboto-bold" *ngIf="aparelho.situacaoAlerta == 0">
+              Sem Restrição
+            </div>
+            <div class="border-red font-24 text-center font-roboto-bold" *ngIf="aparelho.situacaoAlerta != 0">
+              Em Alerta
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-card>
+        <ion-card-content>
+          <div class="mb-2">
+            <div class="font-roboto-black font-15 color-default mb-0 text-truncate d-flex justify-content-between align-items-center">
+              <span class="flex-1 phone-box d-flex align-items-center px-1">
+                <i class="font-32 color-default ion-iphone"></i>
+                <span class="font-roboto-medium font-15 color-default ml-2">81 987654321</span>
+              </span>
+              <div class="d-flex flex-1 align-items-center justify-content-end">
+                <img class="img-phone" src="assets/images/edit.png" />
+               
+                <img class="img-phone" src="assets/images/alert.png" (click)="alertar()" />
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Marca:</div>
+                <div class="font-roboto-regular color-default font-12">APPLE</div>
+              </div>
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Modelo:</div>
+                <div class="font-roboto-regular color-default font-12">IPHONE 6S</div>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Operadora:</div>
+                <div class="font-roboto-regular color-default font-12">TIM</div>
+              </div>
+              <div class="flex-1">
+                <div class="font-roboto-bold color-default font-15">Serial:</div>
+                <div class="font-roboto-regular color-default font-12">Não informado</div>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="">
+                <div class="font-roboto-bold color-default font-15">IMEI:</div>
+                <div class="d-flex align-items-center font-roboto-regular color-default font-20">
+                  <i class="font-32 color-default ion-document-text"></i>
+                  <span class="ml-2">990000862471854</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="splitter pt-3">
+            <div class="font-roboto-bold color-default font-15">Situação de Alerta:
+            </div>
+            <div class="border-red font-24 text-center font-roboto-bold">
+              Em Alerta
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card> -->
+    </div>
+    <ng-template #divSemAparelhos>
+      <span class="font-14 font-roboto-regular ml-3">
+        <em>Nenhum aparelho cadastrado até o momento.</em>
+      </span>
+    </ng-template>
+  </div>
+
+</ion-content>

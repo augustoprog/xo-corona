@@ -1,0 +1,63 @@
+<!--
+  Generated template for the MenuAgendamentoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title>Agendamento</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card class="mb-3">
+    <ion-card-content
+      (click)="navCtrl.push(pageAgendamentoStepOnePage)"
+      class="py-1"
+    >
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="font-roboto-bold font-18 color-default mb-0">Agendar</h2>
+        <i class="ion-plus-circled font-48 color-blue icon-plus-shadow"></i>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="mb-3">
+    <ion-card-content
+      (click)="navCtrl.push(pageAgendamentoConsulta)"
+      class="py-3"
+    >
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="font-roboto-bold font-18 color-default mb-0">
+          Consultar Agendamentos
+        </h2>
+        <span class="bg-blue icon-custom">
+          <img
+            class="img-fluid card-logo"
+            src="assets/images/agendamento-icon.svg"
+            alt="Agendar"
+          />
+        </span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="mb-5">
+    <h2 class="font-roboto-black font-18 text-center my-3 color-default">
+      Lista de Agendamentos
+    </h2>
+    <div *ngFor="let agenda of agendamentos">
+      <agendamento-card [agenda]="agenda"></agendamento-card>
+    </div>
+  </div>
+  <div
+    class="font-14 font-roboto-regular mb-3 text-center"
+    *ngIf="!agendamentos"
+  >
+    <em class="color-default">Nenhum agendamento cadastrado até o momento.</em>
+  </div>
+</ion-content>

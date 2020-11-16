@@ -1,0 +1,15 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>COMPRE PE</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+<ion-content>
+  <iframe [src]="urlPage" width="100%" height="100%" 
+    name="framePage" frameborder="0" scrolling="yes" (load)="dismissLoad()"></iframe>
+</ion-content>

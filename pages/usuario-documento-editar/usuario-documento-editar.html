@@ -1,0 +1,45 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <!-- end ion-buttons -->
+    <ion-title *ngIf="!documentoId">Novo Documento</ion-title>
+    <ion-title *ngIf="documentoId">Editar Documento</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="new-content bg-multiple-2">
+
+
+  <form (ngSubmit)="salvaDocumento(form)" novalidate #form="ngForm">
+    <ion-card *ngIf="tipoDocumento">
+      <ion-card-content class="">
+        <h3 class="color-default font-roboto-black font-16 text-truncate m-0 text-center">{{tipoDocumento?.titulo}}</h3>
+
+        <div class="d-flex flex-column mb-2" *ngFor="let k of objDocumento">
+          <label class="color-default font-14 font-roboto-medium">{{k.name}}:</label>
+          <input [type]="k.inputType" [placeholder]="k.placeholder" [id]="k.name" [name]="k.name" [pattern]="k.pattern" autocapitalize="characters"
+            (input)="k.value=k.value.toUpperCase()" [(ngModel)]="k.value" class="form-control text-uppercase" autocomplete="off"
+            required [class.input-invalid]="!isValid(form, k.name) && form.submitted" />
+        </div>
+      </ion-card-content>
+
+      <!-- <div *ngIf="tipoDocumento">
+    <h3>{{tipoDocumento.titulo}}</h3>
+
+    <ion-item *ngFor="let k of objDocumento">
+      <ion-label stacked color="primary" text-uppercase>{{k.name}}</ion-label>
+      <ion-input [type]="k.inputType" [placeholder]="k.placeholder" [id]="k.name" [pattern]="k.pattern" [(ngModel)]="k.value"></ion-input>
+    </ion-item>
+
+  </div> -->
+    </ion-card>
+
+
+    <div padding *ngIf="tipoDocumento">
+      <button type="submit"   ion-button color="secondary" block>Salvar</button>
+      <button type="button" ion-button color="danger" block (click)="deleteDocumento()" *ngIf="documentoId">Apagar Documento</button>
+    </div>
+  </form>
+
+</ion-content>

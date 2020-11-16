@@ -1,0 +1,61 @@
+<!--
+  Generated template for the CompesaConsultaLojasPorMunicipioResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+    <ion-navbar class="text-center">
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>COMPESA</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+    <ion-card>
+        <ion-card-content>
+            <h2 class="font-roboto-black text-center font-15 color-default mb-2">Lojas por Município</h2>
+            <div class="bg-blue round round-5 text-center">
+                <span class="font-roboto-bold font-18 color-white" [textContent]="nome"></span>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card *ngFor="let item of resultado">
+        <ion-card-content>
+            <div class="d-flex flex-row mb-2 align-items-stretch">
+                <div class="bg-light-gray round text-center round-5 p-2 flex-1">
+                    <span class="font-roboto-bold font-14 color-default" [textContent]="item.nomeLoja"></span>
+                </div>
+                <button class="btn-clear btn-round-circle ml-3 p-0" (click)="openLocation(item, nome)">
+                    <span class="ion ion-ios-location round bg-blue font-32 color-white"></span>
+                </button>
+            </div>
+            <div *ngIf="item.logradouro" class="d-flex flex-column mb-2">
+                <span class="font-roboto-black font-14 color-default">Endereço:</span>
+                <div class="font-roboto-regular font-12 color-default d-flex">
+                    <span class="ion ion-ios-location color-default font-14 mr-1"></span>
+                    <div>
+                        <span [textContent]="item.logradouro"></span>
+                        <span [textContent]="','+ item.bairro"></span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="item.pontoReferencia" class="d-flex flex-column mb-2">
+                <span class="font-roboto-black font-14 color-default">Ponto de Referência:</span>
+                <div class="d-flex">
+                    <span class="ion-ios-navigate color-default font-14 mr-1"></span>
+                    <span class="font-roboto-regular font-12 color-default d-block" [textContent]="item.pontoReferencia"></span>
+                </div>
+            </div>
+            <div *ngIf="item.fone" class="d-flex flex-column">
+                <span class="font-roboto-black font-14 color-default">Telefone:</span>
+                <div class="font-roboto-regular font-12 color-default d-flex">
+                    <span class="ion ion-ios-telephone color-default font-14 mr-1"></span>
+                    <a href (click)="$event.preventDefault(); ligarNumero(item.fone)" [textContent]="item.fone"></a>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

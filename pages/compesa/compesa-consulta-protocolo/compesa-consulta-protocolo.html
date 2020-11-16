@@ -1,0 +1,46 @@
+<!--
+  Generated template for the CompesaConsultaProtocoloPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>
+      COMPESA
+    </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <h2 class="font-roboto-black text-center font-15 color-default mb-2">Consulta por Protocolo</h2>
+      <p class="font-roboto-regular font-14 color-default mb-3">Informe o número do protocolo abaixo para acompanhar sua solicitação.</p>
+
+      <form #form="ngForm" novalidate (submit)="consultarProtocolo(form)">
+        <div class="mb-4" [ngClass]="{'input-group':field.value.length > 0}">
+          <input type="tel" #field [(ngModel)]="protocolo" required maxlength="60" name="protocolo" #protocoloModel="ngModel" class="form-control"
+            placeholder="Número do Protocolo" autocomplete="off" [class.input-invalid]="(form.submitted || protocoloModel.touched) && protocoloModel.invalid"
+          />
+          <div class="input-group-append cursor-pointer" form clear-field="protocolo" *ngIf="field.value.length > 0">
+            <span class="ion-ios-close-empty color-default input-group-text ion-flex" [class.input-invalid]="(form.submitted || protocoloModel.touched) && protocoloModel.invalid"></span>
+          </div>
+        </div>
+        <button ion-button color="primary" block>Consultar</button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="status">
+    <ion-card-content>
+      <h2 class="font-roboto-black text-center font-15 color-default mb-2">Informações da solicitação</h2>
+      <p class="font-roboto-regular font-14 color-default mb-3" [textContent]="status"></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

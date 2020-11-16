@@ -1,0 +1,66 @@
+<!--
+  Generated template for the MenuParticipe page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+    <ion-navbar class="pb-3">
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>Participe</ion-title>
+        <!-- end title -->
+    </ion-navbar>
+    <!-- end ion-nav-bar -->
+    <div padding class="bg-multiple-simple pb-0">
+    </div>
+</ion-header>
+<!-- end ion-header -->
+
+
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+
+    <ion-list class="list-custom">
+
+        <ion-item *ngIf="false">
+            <div class="col-10 d-flex flex-column">
+                <h3 class="color-default font-roboto-black font-16">Avalia PE</h3>
+                <span class="font-10 color-light-gray-3">Veja os avisos aqui...</span>
+            </div>
+        </ion-item>
+
+        <ion-item (click)="goToFaleconosco()">
+            <div class="col-12 d-flex flex-column">
+                <h3 class="color-default font-roboto-black font-16">Fale Conosco</h3>
+                <span class="font-10 color-light-gray-3">Informação e dúvida</span>
+            </div>
+        </ion-item>
+
+        <ion-item *ngIf="false">
+            <div class="col-12 d-flex flex-column">
+                <h3 class="color-default font-roboto-black font-16">Opina Cidadão</h3>
+                <span class="font-10 color-light-gray-3">O governo quer saber Sua opnião sobre...</span>                
+            </div>
+        </ion-item>
+
+        <ion-item (click)="goToOuvidoria()">
+            <div class="col-12 d-flex flex-column">
+                <h3 class="color-default font-roboto-black font-16">Ouvidoria</h3>
+                <span class="font-10 color-light-gray-3">Solicitação, Reclamação, Elogio, Denúncia, Sugestão<br> e Acesso à Informação</span>
+            </div>
+        </ion-item>
+
+        <ion-item (click)="goToParticipe()">
+            <div class="col-12 d-flex flex-column">
+                <h3 class="color-default font-roboto-black font-16">Todos por Pernambuco Digital</h3>
+                <span class="font-10 color-light-gray-3">Portal de Participação Cidadã do Governo do Estado<br> de Pernambuco</span>
+            </div>
+        </ion-item>
+        <!-- <ion-item (click)="openPage('ExpressoAntesDeIrPage')">
+        <h3>&nbsp;&nbsp;&nbsp;Antes de ir ao Expresso...</h3>
+      </ion-item> -->
+    </ion-list>
+
+</ion-content>

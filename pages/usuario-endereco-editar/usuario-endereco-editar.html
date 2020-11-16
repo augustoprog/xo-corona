@@ -1,0 +1,100 @@
+<ion-header class="new-header">
+    <ion-navbar>
+        <ion-title>Endereço</ion-title>
+    </ion-navbar>
+    <!-- end ion-nav-bar -->
+</ion-header>
+
+<ion-content padding class="new-content bg-multiple-2">
+    <ion-card>
+        <ion-card-content class="">
+            <form (submit)="salvarEndereco(form)" novalidate #form="ngForm">
+
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">*CEP:</label>
+                    <div class="input-group">
+                        <input placeholder="CEP" #cep_="ngModel" required type="tel" class="form-control" [(ngModel)]="endereco.cep"
+                            name="cep" [class.input-invalid]="cep_.invalid && form.submitted" [textMask]="{mask: mask, guide: false}"
+                            (blur)="endereco.cep = fixMask(mask, endereco.cep)" />
+                        <div class="input-group-append">
+                            <button class="input-group-text form-control input-button pr-3" type="button" round (click)="buscarCep()"
+                                item-end>Completar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">*Logradouro:</label>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Logradouro" [(ngModel)]="endereco.logradouro" name="logradouro"
+                            class="form-control" autocomplete="off" required [customMaxLength]="100" #logradouro="ngModel"
+                            [class.input-invalid]="logradouro.invalid && form.submitted"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">*Número:</label>
+                    <ion-item>
+                        <ion-input type="tel" placeholder="Número" [(ngModel)]="numero" name="numero" class="form-control"
+                            autocomplete="off" required maxlength="10" #num="ngModel" [class.input-invalid]="num.invalid && form.submitted"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">Complemento:</label>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Complemento" [(ngModel)]="complemento" name="complemento" [customMaxLength]="100"
+                            class="form-control" autocomplete="off" #comp="ngModel" [class.input-invalid]="comp.invalid && form.submitted"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">*Bairro:</label>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro" name="bairro" class="form-control"
+                            required [customMaxLength]="100" autocomplete="off" #bairr="ngModel" [class.input-invalid]="bairr.invalid && form.submitted"></ion-input>
+                    </ion-item>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">*UF</label>
+                    <select-box placeholder="UF" #uf="ngModel" [class.input-invalid]="uf.invalid && form.submitted"
+                        [(ngModel)]="endereco.estado" required name="estado" class="form-control" [selectOptions]="UFs"></select-box>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="color-default font-14 font-roboto-medium">*Municipio:</label>
+                    <ion-item>
+                        <ion-input type="text" placeholder="Municipio" [(ngModel)]="endereco.cidade" name="municipio"
+                            class="form-control" required [customMaxLength]="100" autocomplete="off" #munici="ngModel"
+                            [class.input-invalid]="munici.invalid && form.submitted"></ion-input>
+                    </ion-item>
+                </div>
+                <!-- <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">*UF:</label>
+          <ion-item>
+                        <ion-input type="text" placeholder="UF" [(ngModel)]="endereco.estado" name="siglaUf" class="form-control" required autocomplete="off"
+            #uf="ngModel" [class.input-invalid]="uf.invalid && form.submitted" />
+        </div> -->
+
+                <!-- <ion-item>
+          <ion-input placeholder="Logradouro" [(ngModel)]="endereco.logradouro" name="logradouro"></ion-input>
+        </ion-item> -->
+                <!-- <ion-item>
+          <ion-input placeholder="Número" [(ngModel)]="numero" name="numero"></ion-input>
+        </ion-item> -->
+                <!-- <ion-item>
+          <ion-input placeholder="Complemento" [(ngModel)]="complemento" name="complemento"></ion-input>
+        </ion-item> -->
+                <!-- <ion-item>
+          <ion-input placeholder="Bairro" [(ngModel)]="endereco.bairro" name="bairro"></ion-input>
+        </ion-item> -->
+                <!-- <ion-item>
+          <ion-input placeholder="Municipio" [(ngModel)]="endereco.cidade" name="municipio"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="UF" [(ngModel)]="endereco.estado" name="siglaUf"></ion-input>
+        </ion-item> -->
+
+
+                <button ion-button color="primary" block type="submit">Salvar</button>
+                <button ion-button color="danger" block type="button" (click)="deletarEndereco()" *ngIf="enderecoId">Apagar
+                    Endereço</button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

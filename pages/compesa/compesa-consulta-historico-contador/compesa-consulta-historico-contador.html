@@ -1,0 +1,54 @@
+<!--
+  Generated template for the CompesaConsultaHistoricoContador page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+    <ion-navbar class="text-center">
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>
+            COMPESA
+        </ion-title>
+        <!-- end ion-title -->
+    </ion-navbar>
+    <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+    <ion-card>
+        <ion-card-content>
+            <h2 class="font-roboto-black text-center font-15 color-default mb-2 mt-2">Histórico de Consumo</h2>
+            <p class="font-roboto-regular font-14 color-default mb-3">Informe o número da sua matrícula e as datas de
+                início e fim para consultar o histórico de consumo.</p>
+
+            <form action="" #form="ngForm" novalidate (submit)="consultarHistorico(form)">
+                <div class="mb-4">
+                    <input type="tel" [(ngModel)]="matricula" required maxlength="20" name="matricula" #matriculaModel="ngModel" class="form-control"
+                        placeholder="Número da matrícula" autocomplete="off" [class.input-invalid]="(form.submitted || matriculaModel.touched) && matriculaModel.invalid" />
+                </div>
+                <div class="input-group mb-4 form-control">
+                    <label class="label mb-0 mr-2" stacked>De: </label>
+                    <ion-datetime class="p-0" displayFormat="MMM YYYY" [(ngModel)]="dataInicial" [max]="dataFinal" name="dataInicial"
+                        required monthNames="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+                        monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez" dayNames="Domingo, Segunda-feira, Ter\u00e7a-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sabado"
+                        dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sab" doneText="OK" cancelText="Cancelar" #deModel="ngModel"
+                        [class.input-invalid]="(form.submitted || deModel.touched) && deModel.invalid"></ion-datetime>
+                </div>
+
+                <div class="input-group mb-4 form-control">
+                    <label class="label mb-0 mr-2" stacked>Até: </label>
+                    <ion-datetime class="p-0" displayFormat="MMM YYYY" [(ngModel)]="dataFinal" [min]="dataInicial" name="dataFinal"
+                        required monthNames="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+                        monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez" dayNames="Domingo, Segunda-feira, Ter\u00e7a-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sabado"
+                        dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sab" doneText="OK" cancelText="Cancelar" #ateModel="ngModel"
+                        [class.input-invalid]="(form.submitted || ateModel.touched) && ateModel.invalid"></ion-datetime>
+                </div>
+                <button ion-button color="primary" block>Consultar</button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,45 @@
+@import "theme/_segmento.scss";
+.pre-line {
+  white-space: pre-line;
+}
+
+page-carta-servico-result {
+    @media screen and (device-aspect-ratio: 40/71) {
+        .schedule-header {
+            padding-left: 8px !important;
+            padding-right: 8px !important;
+            padding-top: 8px !important;
+        }
+
+        .schedule-content {
+            padding-left: 8px !important;
+            padding-right: 8px !important;
+            padding-bottom: 8px !important;
+        }
+    }
+    hr {
+    height: 5px !important;
+    }
+
+    .rotate-180 {
+    transform: rotate(180deg);
+    }
+    .text {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+    .item-search {
+        background-color: #2a92fd;        
+    }
+    .item-no-pad {
+        padding-left: 0 !important;
+    }    
+    .item-md.item-input.input-has-focus .item-inner {
+        box-shadow: none;
+     }
+     .font-15 p {
+        font-size: 0.9375rem !important;
+     }
+}

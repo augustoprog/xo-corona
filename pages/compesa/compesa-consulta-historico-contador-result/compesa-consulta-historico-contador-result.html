@@ -1,0 +1,98 @@
+<!--
+  Generated template for the CompesaConsultaHistoricoContadorResult page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+    <ion-navbar class="text-center">
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>COMPESA</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+    <ion-card>
+        <ion-card-content>
+            <h2 class="font-roboto-black text-center font-15 color-default mb-2">Histórico de Consumo</h2>
+        </ion-card-content>
+    </ion-card>
+    <ng-template #noResults>
+        <ion-card>
+            <ion-card-content>
+                <p class="font-roboto-regular font-14 color-default line-height-16">Não há histórico de consumo para o
+                    período informado.</p>
+            </ion-card-content>
+        </ion-card>
+    </ng-template>
+    <ng-container *ngIf="results; else noResults">
+        <ion-card>
+            <ion-card-content>
+                <p class="font-roboto-regular font-14 color-default line-height-16">Abaixo você pode visualizar o
+                    Histórico e as informações detalhadas de consumo da sua conta.
+                </p>
+            </ion-card-content>
+        </ion-card>
+        <ion-card *ngFor="let item of resultado">
+            <ion-card-content>
+                <ng-container>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-1 bg-light-gray round round-5 py-1 px-2 color-default d-flex align-items-center">
+                            <span class="font-roboto-bold font-15">Data de Leitura:&nbsp;</span>
+                            <span class="font-roboto-regular font-22" [textContent]="(item?.dataLeitura)?item?.dataLeitura:'Não Informada'"></span>
+                        </div>
+                        <div class="card-mark ml-3">
+                            <div class="card-mark-header">
+                                <div class="font-roboto-bold font-12 bg-blue text-center color-white card-mark-item brd-b-blue-2 text-uppercase"
+                                    [textContent]="getMonth(item?.anoMesFaturamento)"></div>
+                            </div>
+                            <!-- end card-mark-header -->
+                            <div class="card-mark-footer">
+                                <div class="font-roboto-regular font-11 bg-blue text-center color-white card-mark-item"
+                                    [textContent]="getYear(item?.anoMesFaturamento)">
+                                </div>
+                            </div>
+                            <!-- end card-mark-footer -->
+                        </div>
+                    </div>
+
+                    <div class="card-step card-step-medium step-blue">
+                        <div class="card-step-item step-item-medium" step="Dias de Leitura">
+                            <div class="font-roboto-light font-20 color-blue step-item" [textContent]="(item?.diasLeitura)?item?.diasLeitura:'-'">
+                            </div>
+                        </div>
+                        <div class="card-step-item step-item-small">
+                            <div class="step-item">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="card-step-item step-item-medium" step="Leitura Faturada">
+                            <div class="font-roboto-light font-20 color-blue step-item" [textContent]="(item?.leituraFaturada)?item?.leituraFaturada:'-'">
+                            </div>
+                        </div>
+                        <div class="card-step-item step-item-small">
+                            <div class="step-item">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="card-step-item step-item-medium" step="Tipo de Consumo">
+                            <div class="font-roboto-light font-20 color-blue step-item" [textContent]="(item?.tipoConsumo)?item?.tipoConsumo:'-'">
+                            </div>
+                        </div>
+                        <div class="card-step-item step-item-small">
+                            <div class="step-item">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="card-step-item step-item-medium" step="Consumo">
+                            <div class="font-roboto-light font-20 color-blue step-item" [textContent]="(item?.consumo)?item?.consumo:'-'">
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
+</ion-content>

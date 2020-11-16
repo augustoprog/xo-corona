@@ -1,0 +1,61 @@
+cmp-lista-servicos {
+    .list-header {
+        text-transform: uppercase;
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .item {
+        background: unset;
+    }
+    .item-inner {
+        padding-right: 4px;
+    }
+    .label {
+        margin: 0 8px 0 0;
+        white-space: initial;
+    }
+    .badge {
+        font-size: 0.875rem;
+    }
+    ion-label {
+        overflow: visible;
+    }
+    ion-card.item-servico {
+        ion-icon {
+            font-size: 1.25rem;
+        }
+        h2 {
+            font-weight: 500;
+            font-size: 0.875rem;
+            overflow: hidden;
+            position: relative;
+            line-height: 1.2em;
+            max-height: 3.5em;
+            text-align: justify;
+            margin-right: -1em;
+            padding-right: 1em;
+        }
+        h2::before {
+            content: '...';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            width: 1em;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            width: 1em;
+            height: 1em;
+            margin-top: 0.2em;
+            background: #fff;
+        }
+        p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+    }
+}

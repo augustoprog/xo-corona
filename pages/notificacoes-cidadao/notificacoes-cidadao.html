@@ -1,0 +1,55 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+
+    <ion-title>Notificações - PE</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+
+  <div padding class="bg-multiple-default py-0">
+    <div class="searchbar-custom shadow-default">
+      <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
+    </div>
+    <!-- end searchbar -->
+  </div>
+
+</ion-header>
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+  <!-- end searchbar -->
+
+  <ion-list class="list-custom mt-4">
+
+    <ion-item *ngFor="let item of notificacoes" (click)="openPage(item)" text-wrap>
+      <div class="col-12 d-flex flex-column">
+        <div class="row">
+          <div class="col-2 d-flex flex-column">
+            <span *ngIf="item.visualizado === 0"
+              class="badge badge-danger font-roboto-medium round font-10 m-auto"></span>
+          </div>
+          <div class="col-8 d-flex flex-column">
+            <h3 class="color-default font-roboto-black font-16 text-truncate text-center text-break"
+              [textContent]="item.tema">
+            </h3>
+          </div>
+          <div class="col-2 d-flex flex-column">
+            <button class="trashButton" (click)="excluir(item);$event.stopPropagation();">
+              <ion-icon class="fa fa-trash iconTrash"></ion-icon>
+            </button>
+          </div>
+        </div>
+        <span class="font-10 font-roboto-black mt-2" [textContent]="item.titulo"></span>
+        <span class="font-10 text-break color-light-gray-3" [textContent]="item.descricao"></span>
+        <span class="font-10 color-light-gray-3 text-center" [textContent]="item.dataCriacao"></span>
+      </div>
+      <!-- <h2>{{ item.categoria.orgao.nome }}</h2>
+      <h2>{{ item.nome }}</h2> -->
+
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>

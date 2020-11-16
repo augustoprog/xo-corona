@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ModalOcupacao page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <ion-buttons start>
+      <button (click)="closeModal()" ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <!-- <ion-buttons>
+        <button (click)="closeModal()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons> -->
+    <ion-title>Municípios - {{uf}}</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+
+  <div padding class="bg-multiple-default py-0">
+    <div class="searchbar-custom shadow-default">
+      <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
+    </div>
+    <!-- end searchbar -->
+  </div>
+
+</ion-header>
+
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+  <div class="font-roboto-black font-18 text-center my-3 color-default">Informe seu município de nascimento.</div>
+
+  <ion-list class="list-custom mt-4" [virtualScroll]="municipios">
+
+    <ion-item *virtualItem="let municipio" (click)="setMunicipio(municipio)">
+      <div class="col-12 d-flex flex-column">
+        <h3 class="color-default font-roboto-black font-16 text-truncate" [textContent]="municipio"></h3>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,100 @@
+<!--
+  Generated template for the CompesaConsultaDebitoResult page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+
+  protocolo para teste 54237561
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>COMPESA</ion-title>
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+
+<ion-content padding class="new-content bg-multiple-2 bg-avatar-white">
+  <ng-container *ngIf="!error; else errorDiv">
+
+    <ion-card>
+      <ion-card-content>
+        <h3 class="font-roboto-bold color-default font-15 font-weight-bold text-center mb-3">Consulta de Débitos</h3>
+        <p class="font-14 font-roboto-bold color-default text-center mb-2">
+          Total de Débitos:
+        </p>
+        <div class="text-center" *ngIf="resultado">
+          <span class="fake-input brd-light-red color-light-red font-32">
+            <span class="font-weight-bold">R$</span>
+            <span class="valor" [textContent]="total?.toFixed(2).replace('.', ',')"></span>
+          </span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngFor="let item of resultado">
+      <ion-card-content>
+        <div class="d-flex flex-row mb-2 align-items-stretch">
+          <div class="col p-0 d-flex align-items-center" *ngIf="item?.idConta">
+            <div class="bg-light-gray round-5 px-2 flex-1 py-1">
+              <span class="font-roboto-bold font-15 color-default">Conta:</span>
+              <span class="font-22 font-roboto-regular color-default text-uppercase" [textContent]="item?.idConta"></span>
+            </div>
+          </div>
+          <!-- end col -->
+          <div class="card-mark ml-3" *ngIf="item?.periodo">
+            <div class="card-mark-header">
+              <div class="font-roboto-bold font-12 bg-blue text-center color-white card-mark-item brd-b-blue-2 text-uppercase" [textContent]="getMonth(item?.periodo)"></div>
+            </div>
+            <!-- end card-mark-header -->
+            <div class="card-mark-footer">
+              <div class="font-roboto-regular font-11 bg-blue text-center color-white card-mark-item" [textContent]="getYear(item?.periodo)">
+              </div>
+            </div>
+            <!-- end card-mark-footer -->
+          </div>
+          <!-- end card-mark -->
+        </div>
+        <!-- end flex-row -->
+
+        <div class="mb-2 row" *ngIf="item?.valor">
+          <div class="col-12">
+            <span class="font-roboto-bold color-default font-15 font-weight-bold">
+              Valor:
+            </span>
+            <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+              R$
+              <span class="valor" [textContent]="item?.valor"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col p-0 d-flex flex-column" *ngIf="item?.codigoBarra">
+          <span class="color-default font-roboto-bold font-14">Código de Barras:</span>
+          <span class="font-roboto-regular font-12 color-default" [textContent]="item?.codigoBarra"></span>
+        </div>
+        <!-- end col -->
+
+        <div class="d-flex">
+          <a href="javascript:;" (click)="copyBarCode(item?.codigoBarra)" ion-button block round color="primary" class="font-14 color-white font-roboto-medium">
+            <i class="ion-ios-barcode-outline font-32 mr-2"></i> COPIAR CÓDIGO
+          </a>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #errorDiv>
+    <ion-card>
+      <ion-card-content>
+        <div class="font-roboto-black text-center font-15 color-default mb-3">Nenhuma informação encontrada.</div>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+</ion-content>

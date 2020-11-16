@@ -1,0 +1,56 @@
+<!--
+  Generated template for the SefazNfeConsultaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>SEFAZ-PE</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+
+</ion-header>
+<!-- end ion-header -->
+
+
+<ion-content padding>
+  <div padding>
+    <ion-row class="justify-content-start mb-4">
+      <span class="font-roboto-bold font-18 color-default">Consulta NFe Estadual</span>
+    </ion-row>
+    <ion-row class="justify-content-center mb-2">
+      <span class="font-15 color-default">Se você possui em mãos uma nota fiscal eletrônica ou possui a chave de acesso, poderá realizar sua consulta aqui. Serão consideradas apenas Notas Fiscais Eletrônicas de Produtos</span>
+    </ion-row>
+    <ion-row class="justify-content-start">
+      <span class="font-roboto-bold font-15 color-default mt-4">Digite a Chave de Acesso</span>
+    </ion-row>
+    <ion-row class="justify-content-start">
+      <ion-input type="tel" [(ngModel)]="chaveAcesso" name="chaveAcesso"
+        placeholder="*Número da nota fiscal eletrônica" autocomplete="off"
+        maxlength="44" width="100%" class="chaveAcesso"></ion-input>
+    </ion-row>
+    <ion-row class="justify-content-end mt-2">
+      <button color="danger" ion-button [disabled]="chaveAcesso.length == 0" (click)="chaveAcesso = ''">Limpar</button>
+      <button ion-button [disabled]="chaveAcesso.length < 44" (click)="consultarNfe()">Consultar</button>
+    </ion-row>
+    <ion-row class="justify-content-center mt-4">
+      <button ion-button outline (click)="openBarcode()">Ler código de barras</button>
+    </ion-row>
+    <ion-row class="justify-content-center mt-5">
+      <span class="font-roboto-bold font-18 color-default">Através da Consulta você poderá:</span>
+    </ion-row>
+    <ion-row class="justify-content-center mt-4">
+      <ion-icon class="fa fa-check-circle font-size-30 mr-2" style="color:green"></ion-icon>
+      <span class="font-roboto-bold font-15 color-default">Consultar Informações básicas</span>
+    </ion-row>
+    <ion-row class="justify-content-center mt-2">
+      <ion-icon class="fa fa-check-circle font-size-30 mr-2" style="color:green"></ion-icon>
+      <span class="font-roboto-bold font-15 color-default">Baixar e exportar o DANFE</span>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,33 @@
+<!--
+  Generated template for the ExpressoUnidadePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Expresso Cidadão</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>{{ unidade[0].nome }}</h2>
+
+  <p>
+    ???? Avaliação da Unidade ???
+  </p>
+
+
+</ion-content>
+
+<ion-footer padding>
+    <!--<ion-toolbar>-->
+        <b>Endereço:</b><br>
+        {{ unidade[0].enderecos[0].logradouro }},{{ unidade[0].enderecos[0].numero }}<br>
+        {{ unidade[0].enderecos[0].bairro }} - {{ unidade[0].enderecos[0].municipio }}<br>
+        <b>CEP:</b> {{ unidade[0].enderecos[0].cep }}
+    <!--</ion-toolbar>-->
+  </ion-footer>

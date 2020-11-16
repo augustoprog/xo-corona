@@ -1,0 +1,53 @@
+<ion-header class="new-header">
+  <ion-navbar class="pb-3">
+    <!-- end ion-buttons -->
+    <ion-title>Meus Documentos</ion-title>
+    <!-- end title -->
+    <ion-buttons end>
+      <button ion-button icon-only (click)="getListaTipoDocumentos()">
+        <i class="icon ion-android-add-circle"></i>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <div padding class="bg-multiple-simple pb-0">
+  </div>
+</ion-header>
+
+
+<!-- <ion-content padding>
+    
+      <ion-list>
+    
+        <ion-item *ngFor="let d of documentos" (click)="editPage(d.id, d.tipoDocumento.id)">
+    
+          <span *ngFor="let x of d.tipoDocumento.jsonValidacao.structure">        
+            {{ x.key | uppercase }}: {{ d.json[x.key] }}<br>
+          </span>
+          
+    
+        </ion-item>
+    
+      </ion-list> 
+
+
+</ion-content>-->
+
+<ion-content padding class="new-content bg-avatar-white">
+  <ion-list class="list-custom ">
+    <!-- <ion-item *ngFor="let a of [0,1,2,3,4,5,6,7,8,9,10]">
+            <div class="col-12 d-flex flex-column">
+              <h3 class="color-default font-roboto-black font-16 text-truncate">Numero {{ a}}</h3>
+              <span class="font-10 color-light-gray-3"> asere twetwert wert</span>
+              <span class="font-10 color-light-gray-3"> asdf asfasdfas dfas</span>
+            </div>
+          </ion-item> -->
+
+    <ion-item *ngFor="let d of documentos" (click)="editPage(d.id, d.tipoDocumento.id)">
+      <div class="col-12 d-flex flex-column">
+        <h3 *ngFor="let x of d.tipoDocumento.jsonValidacao.structure" class="color-default font-roboto-black font-16 text-truncate m-0">{{ x.key }}: {{ d.json[x.key] }}</h3>
+        <!-- <span *ngFor="let x of c.tipoContato.jsonValidacao.structure" class="font-10 color-light-gray-3"> {{ x.key|uppercase }}: {{ c.json[x.key] }}</span> -->
+      </div>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,36 @@
+<!--
+  Generated template for the Covid19DycovidPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>COVID-19</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+
+<ion-content padding>
+  <div padding>
+    <ion-row class="justify-content-center mb-4">
+      <span class="font-roboto-bold font-18 color-default">DYCOVID</span>
+    </ion-row>
+    <ion-row class="justify-content-center mb-2">
+      <span class="font-15 color-default">{{ descricao }}</span>
+    </ion-row>
+    <ion-row class="justify-content-left mt-5 mb-5">
+      <span (click)="openDycovid()" class="font-15 linkButton">Clique aqui para Download do APP</span>
+    </ion-row>
+    <ion-row class="justify-content-left mt-5" (click)="sharePlayStore()">
+      <ion-icon class="fa fa-share-alt font-size-40" 
+        aria-hidden="true"></ion-icon>
+      <span class="font-roboto-bold font-15 color-default ml-2 mt-2">Compartilhar</span>
+    </ion-row>
+  </div>
+</ion-content>

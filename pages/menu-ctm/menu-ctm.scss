@@ -1,0 +1,20 @@
+page-menu-ctm {
+  .right {
+    float: right;
+  }
+  .listaFav {
+    font-style: italic;
+    font-size: 80%;
+  }
+
+  .icon-plus-shadow {
+    text-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+  }
+
+  ion-card {
+    border: 1px solid #e8e8e8 !important;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.06) !important;
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.06) !important;
+  }
+}

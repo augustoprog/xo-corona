@@ -1,0 +1,103 @@
+<!--
+  Generated template for the AgendamentoStepFourPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <step-default [active]="4"></step-default>
+      <!-- end step-default -->
+
+      <form #form="ngForm" novalidate (submit)="stepFourSubmit($event, form)">
+        <p
+          class="mb-2 font-14 font-roboto-regular color-default text-left line-height-default"
+        >
+          *Só serão permitidos
+          <span [textContent]="maximoPorAgendamento"></span> usuários por
+          agendamento.
+        </p>
+
+        <div [ngClass]="{ 'mb-3': !relacionados.length }">
+          <h2 class="font-roboto-black font-18 color-default mb-3 text-center">
+            Requerente
+          </h2>
+
+          <agendamento-selecionar-pessoa
+            name="titular"
+            [(ngModel)]="titular"
+            [pessoa]="requerente"
+            [infoAdicionais]="infoAdicionais"
+            [checked]="isSelected(requerente)"
+            (selectPessoa)="onSelectPessoa($event)"
+            (unselectPessoa)="onUnselectPessoa($event)"
+          ></agendamento-selecionar-pessoa>
+        </div>
+        <!-- dados requerente -->
+
+        <div class="mb-3" *ngIf="relacionados.length">
+          <h2 class="font-roboto-black font-18  mb-3 color-default text-center">
+            Dependentes
+          </h2>
+          <p
+            class="mb-2 font-14 font-roboto-regular color-default text-left line-height-default"
+          >
+            *Selecione os dependentes para agendar o serviço.
+          </p>
+
+          <ng-container *ngFor="let dependente of relacionados; let i = index">
+            <agendamento-selecionar-pessoa
+              [name]="'dependente' + i"
+              [(ngModel)]="dependentes[i]"
+              [isDependent]="true"
+              [pessoa]="dependente"
+              [infoAdicionais]="infoAdicionais"
+              [checked]="isSelected(dependente)"
+              (selectPessoa)="onSelectPessoa($event)"
+              (unselectPessoa)="onUnselectPessoa($event)"
+            ></agendamento-selecionar-pessoa>
+          </ng-container>
+        </div>
+        <!-- dados dependente -->
+
+        <div class="d-flex align-items-center">
+          <button
+            type="button"
+            ion-button
+            color="primary"
+            block
+            (click)="voltar()"
+            class="mr-1"
+          >
+            <span class="button-inner">Voltar</span>
+          </button>
+          <button
+            type="submit"
+            ion-button
+            color="primary"
+            block
+            class="text-uppercase ml-1"
+          >
+            AVANÇAR
+          </button>
+        </div>
+        <!-- end div botoes -->
+      </form>
+      <!-- end form -->
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card -->
+</ion-content>
+<!-- end ion-content -->

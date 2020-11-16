@@ -1,0 +1,33 @@
+@import "../../theme/var";
+
+page-ouvidoria {
+    .item-inner {
+        padding-right: 4px;
+    }
+    .label {
+        margin: 0 8px 0 0;
+        white-space: initial;
+    }
+    ion-label {
+        overflow: visible;
+        width: 100%;
+    }
+    .item-ouvidoria {
+        margin-bottom: 10px;
+        text-align: left;
+        ion-icon {
+            font-size: 1.25rem;
+        }
+        h2 {
+            font-weight: 500;
+            font-size: 0.875rem;
+            overflow: hidden;
+            position: relative;
+            line-height: 1.2em;
+            max-height: 3.5em;
+            text-align: justify;
+            margin-right: -1em;
+            padding-right: 1em;
+        }
+    }
+}

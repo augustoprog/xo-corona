@@ -1,0 +1,60 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <ion-title>Esqueci minha senha</ion-title>
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+<ion-content padding class="new-content bg-multiple-3">
+  <ion-card>
+    <ion-card-content *ngIf="!showEmails">
+      <h3 class="font-18 font-roboto-black color-default text-center mb-4">Para recuperar sua senha insira o email cadastrado e siga com as instruções.</h3>
+      <form action="" novalidate #form="ngForm" (ngSubmit)="consultar(form)">
+
+        <div class="input-group mb-2">
+          <input email type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="E-mail" autocomplete="off" [class.input-invalid]="emailf.invalid && form.submitted"
+            required [customMaxLength]="50" #emailf="ngModel" />
+          <div class="input-group-append">
+            <span class="input-group-text ion ion-ios-email-outline color-blue" [class.input-invalid]="emailf.invalid && form.submitted"></span>
+          </div>
+        </div>
+        <!-- <ion-col col-6>
+            <button ion-button round color="primary" class="mb-4" block (click)="navVoltar()" ([attr.disabled])="offline" ([class.button-disabled])="offline">Voltar</button>
+          </ion-col> -->
+        <div class="input-group mb-2">
+          <button type="submit" ion-button round color="primary" class="mb-4" block ([attr.disabled])="offline" ([class.button-disabled])="offline">Enviar</button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<!-- 
+<ion-content padding>
+  <div class="main content-form">
+    <div class="content-middle">
+
+    
+
+      <div class="mb-4 mt-4 d-flex align-items-center justify-content-center" *ngIf="showEmails">
+        <ion-row>
+          <ion-col col-12 *ngFor="let email of emails">
+            <div class="custom-control custom-radio d-flex align-items-center">
+              <input type="radio" name="aceitePolitica" class="custom-control-input">
+              <label class="custom-control-label font-13 color-default font-roboto-light">{{email.email}}</label>
+            </div>
+          </ion-col>
+          <ion-col col-12>
+            <button ion-button round color="primary" class="mb-4" block (click)="enviar()" ([class.button-disabled])="offline">Enviar</button>
+          </ion-col>
+        </ion-row>
+
+      </div>
+    </div>
+  </div>
+</ion-content> -->

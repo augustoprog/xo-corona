@@ -1,0 +1,69 @@
+@import "../../theme/_var.scss";
+page-alerta-celular-informar {
+  hr {
+    height: 1px !important;
+  }
+}
+.select-custom {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  border: 1px solid $color-blue;
+  color: $color-blue;
+  font-size: $font-20;
+  padding: 0.3rem 0.5rem;
+  font-family: $font-roboto-regular;
+}
+.select-active {
+  color: $color-default;
+  border-color: #d3d3d3;
+  background-color: #dedede;
+  span {
+    color: $color-default;
+  }
+}
+.list-orientacao {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-top: 0.75rem;
+  li {
+    display: flex;
+    font-family: $font-roboto-light;
+    color: $color-default;
+    margin-bottom: 0.75rem;
+    font-size: $font-13;
+    flex-wrap: wrap;
+    p {
+      font-size: $font-13;
+    }
+  }
+  .orientacao-stap {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid $color-blue;
+    color: $color-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.img-md {
+  width: 32px;
+}
+.line-normal {
+  line-height: normal;
+}
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .font-flex {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (device-width: 360px) {
+  .font-flex {
+    font-size: 16px !important;
+  }
+}

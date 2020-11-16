@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ExpressoUnidadesListarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Expresso Cidadão</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>Unidades do Expresso Cidadão</h2>
+  <ion-list>
+
+    <ion-item *ngFor="let item of unidades" (click)="openPage(item.id)">
+
+      <h3>{{ item.nome }}</h3>
+      <p>
+        <b>Endereço:</b>
+        {{ item.enderecos[0].logradouro }},{{ item.enderecos[0].numero }}<br>
+        {{ item.enderecos[0].bairro }} - {{ item.enderecos[0].municipio }}<br>
+        <b>CEP:</b> {{ item.enderecos[0].cep }}
+      </p>
+
+    </ion-item>
+  </ion-list>
+</ion-content>

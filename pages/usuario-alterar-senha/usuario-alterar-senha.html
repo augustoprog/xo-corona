@@ -1,0 +1,72 @@
+<!--
+  Generated template for the UsuarioAlterarSenhaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+
+  <ion-navbar>
+    <ion-title>Alterar Senha</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding class="new-content bg-multiple-2">
+  <ion-card>
+    <ion-card-content class="mt-4">
+      <form action="" novalidate #form="ngForm">
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Senha Atual:</label>
+          <input type="password" [(ngModel)]="senhaAtual" name="senhaAtual" class="form-control" placeholder="Senha" autocomplete="off"
+            required maxlength="32" #pass="ngModel" [class.input-invalid]="pass.invalid && form.submitted" />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Nova Senha:</label>
+          <input type="password" [(ngModel)]="senhaNova" name="senhaNova" class="form-control" placeholder="Senha" autocomplete="off"
+            required maxlength="32" #newpass="ngModel" [class.input-invalid]="newpass.invalid && form.submitted" />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Confirme a Nova Senha:</label>
+          <input type="password" [(ngModel)]="senhaConfirmacao" name="senhaConfirmacao" class="form-control" placeholder="Senha" autocomplete="off"
+            required maxlength="32" #confpass="ngModel" [class.input-invalid]="confpass.invalid && form.submitted" />
+        </div>
+
+        <div class="input-group mb-2">
+          <button ion-button round color="primary" class="mb-4" block (click)="alterarSenha(form)" ([attr.disabled])="offline" ([class.button-disabled])="offline">Alterar Senha</button>
+        </div>
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>
+
+<!-- <ion-content padding>
+    <ion-list>
+        
+        
+              <ion-item>
+                <ion-label stacked color="primary" text-uppercase>Senha Atual</ion-label>
+                <ion-input type="password" [(ngModel)]="senhaAtual"></ion-input>
+              </ion-item>      
+        
+              <ion-item>
+                <ion-label stacked color="primary" text-uppercase>Senha Nova</ion-label>
+                <ion-input type="password" [(ngModel)]="senhaNova"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label stacked color="primary" text-uppercase>Confirme a Senha Nova</ion-label>
+                  <ion-input type="password" [(ngModel)]="senhaConfirmacao"></ion-input>
+                </ion-item>              
+        
+            </ion-list>
+        
+        
+            <div padding>
+              <button ion-button color="primary" block (click)="alterarSenha()">Alterar Senha</button>
+            </div>    
+        
+
+</ion-content> -->

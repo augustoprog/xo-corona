@@ -1,0 +1,55 @@
+<!--
+  Generated template for the CtmListarLinhasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+    <ion-navbar>
+        <ion-title class="text-uppercase">Grande Recife</ion-title>
+    </ion-navbar>
+    <!-- end ion-navbar -->
+    <div padding class="bg-multiple-default py-0">
+        <div class="searchbar-custom shadow-default">
+            <ion-searchbar #searchbar placeholder="Buscar" [(ngModel)]="search" (ionInput)="searchbar.setValue(limparEmojis(search))"></ion-searchbar>
+        </div>
+        <!-- end searchbar -->
+    </div>
+</ion-header>
+<!-- end ion-header -->
+
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+    <span *ngIf="semConexao" class="error-message">
+        <i class="fa fa-exclamation-triangle"></i> Sem conexão com a internet
+    </span>
+    <ng-template #listaLinhas>
+        <h2 class="color-default font-roboto-black font-18 text-center mb-3">Lista das Linhas</h2>
+    </ng-template>
+    <ion-list class="list-custom" [virtualScroll]="linhas | filter:search:'nombre'">
+        <ion-item *virtualItem="let linha">
+            <div class="d-flex flex-1">
+                <div class="col-2 px-0 d-flex alin-items-center justify-content-center brd-separator-right">
+                    <button ion-button clear class="p-0 m-0" [disabled]="linha?.extinta" (click)="alternaLinhaFavorita(linha.id,linha.label,linha.nombre)">
+                        <span *ngIf="checaLinhaFavorita(linha.id,linha.label,linha.nombre); else estrelaCinza" class="ion-ios-star ion font-32 color-yellow"></span>
+                        <ng-template #estrelaCinza>
+                            <span class="ion-ios-star-outline ion color-light-gray-5 font-32 color-dark-gray"></span>
+                        </ng-template>
+                    </button>
+                </div>
+                <div class="col-10 d-flex">
+                    <button clear ion-button class="p-0 m-0 flex-1 text-left d-flex flex-coloumn" [disabled]="linha?.extinta"
+                        (click)="openPage(linha.label, linha.nombre)">
+                        <div class="mb-1 d-flex text-left align-items-end">
+                            <span [textContent]="'Linha '+ linha?.label" class="color-default font-roboto-black font-15 text-capitalize mr-2">
+                            </span>
+                            <span class="badge-danger line-height-6 p-1 round font-9 font-roboto-regular color-white"
+                                *ngIf="linha?.extinta">Extinta</span>
+                        </div>
+                        <div [textContent]="linha?.nombre" class="color-default font-roboto-regular font-9 text-left text-capitalize"></div>
+                    </button>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

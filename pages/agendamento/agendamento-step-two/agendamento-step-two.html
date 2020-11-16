@@ -1,0 +1,35 @@
+<!--
+  Generated template for the AgendamentoStepTwoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <step-default [active]="2"></step-default>
+      <!-- end step-default -->
+      <agendamento-dados-requerente-input 
+      (submit)="onNewRequerente($event)" 
+      (back)="onBack()"
+      [camposObrigatorios]="camposObrigatorios"
+      [readonly]="logado"
+      [pessoa]="pessoa">
+      </agendamento-dados-requerente-input>
+      <!-- end agendamento-dados-requerente-input -->
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card -->
+</ion-content>
+<!-- end ion-content -->

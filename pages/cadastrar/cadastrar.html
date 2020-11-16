@@ -1,0 +1,274 @@
+<ion-content padding>
+  <div class="main content-form">
+    <div class="content-middle">
+      <h1 class="content-logo">
+        <img src="assets/logo-pe-mobile.svg" class="img-fluid" />
+      </h1>
+      <form action="" novalidate (submit)="cadastrar(form)" #form="ngForm">
+        <ion-item>
+          <ion-input
+            [class.input-invalid]="isInvalidModel(form, nomeModel)"
+            #nomeModel="ngModel"
+            type="text"
+            [(ngModel)]="nome"
+            name="nome"
+            class="form-control"
+            placeholder="*Nome Completo"
+            autocomplete="off"
+            spellcheck="false"
+            autocorrect="off"
+            required
+            minlength="3"
+            [customMaxLength]="60"
+            (keydown)="tabGoNext($event, nomeMaeEl)"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            #nomeMaeEl
+            type="text"
+            [class.input-invalid]="isInvalidModel(form, nomeMaeModel)"
+            #nomeMaeModel="ngModel"
+            [(ngModel)]="nomeMae"
+            name="nomeMae"
+            class="form-control"
+            placeholder="*Nome da Mãe"
+            autocomplete="off"
+            spellcheck="false"
+            autocorrect="off"
+            required
+            [customMaxLength]="100"
+            (keydown)="tabGoNext($event, cpfEl)"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <input
+            type="tel"
+            [class.input-invalid]="isInvalidModel(form, cpfModel)"
+            #cpfModel="ngModel"
+            [textMask]="{ mask: mask, guide: false }"
+            (blur)="cpf = fixMask(mask, cpf)"
+            [(ngModel)]="cpf"
+            name="cpf"
+            class="form-control"
+            placeholder="CPF"
+            autocomplete="off"
+            autocorrect="off"
+            (focus)="fixScroll()"
+            required
+            (keydown)="tabGoNext($event, dataNascimentoEl)"
+          />
+        </ion-item>
+        <ion-item>
+          <ion-datetime
+            #dataNascimentoEl
+            [class.input-invalid]="isInvalidModel(form, dateModel)"
+            #dateModel="ngModel"
+            class="form-control"
+            placeholder="*Data de Nascimento"
+            displayFormat="DD/MM/YYYY"
+            required
+            [(ngModel)]="dataNascimento"
+            name="dataNascimento"
+            monthNames="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+            monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
+            dayNames="Domingo, Segunda-feira, Ter\u00e7a-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sabado"
+            dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sab"
+            doneText="OK"
+            cancelText="Cancelar"
+          >
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            #emailEl
+            type="email"
+            [class.input-invalid]="isInvalidModel(form, emailModel)"
+            #emailModel="ngModel"
+            [(ngModel)]="email"
+            email
+            name="email"
+            class="form-control"
+            placeholder="*E-mail"
+            autocomplete="off"
+            spellcheck="false"
+            autocorrect="off"
+            required
+            minlength="3"
+            [customMaxLength]="50"
+            (keydown)="tabGoNext($event, email2El)"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            #email2El
+            type="email"
+            [class.input-invalid]="isInvalidModel(form, email2Model)"
+            #email2Model="ngModel"
+            [(ngModel)]="email2"
+            validateEqual="email"
+            email
+            name="email2"
+            class="form-control"
+            placeholder="*Confirme o E-mail"
+            required
+            minlength="3"
+            [customMaxLength]="50"
+            autocomplete="off"
+            spellcheck="false"
+            autocorrect="off"
+            (keydown)="tabGoNext($event, rgEl)"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            #rgEl
+            type="tel"
+            [class.input-invalid]="isInvalidModel(form, rgModel)"
+            #rgModel="ngModel"
+            [(ngModel)]="rg"
+            name="rg"
+            class="form-control"
+            placeholder="*RG"
+            autocomplete="off"
+            maxlength="20"
+            required
+            (keydown)="tabGoNext($event, orgaoExpEl)"
+          ></ion-input>
+        </ion-item>
+
+        <div class="d-flex">
+          <ion-item>
+            <ion-input
+              #orgaoExpEl
+              type="text"
+              [class.input-invalid]="isInvalidModel(form, oeModel)"
+              #oeModel="ngModel"
+              [(ngModel)]="orgaoExpedidor"
+              name="orgaoExpedidor"
+              class="form-control"
+              autocomplete="off"
+              spellcheck="false"
+              autocorrect="off"
+              placeholder="*Órgão Expedidor"
+              required
+              [customMaxLength]="20"
+              (keydown)="tabGoNext($event, p1El)"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <select-box
+              placeholder="*UF"
+              [class.input-invalid]="isInvalidModel(form, ufModel)"
+              #ufModel="ngModel"
+              class="form-control"
+              name="ufRG"
+              [(ngModel)]="ufRG"
+              [selectOptions]="UFs"
+              required
+            ></select-box>
+          </ion-item>
+        </div>
+        <ion-item class="input-group mb-2">
+          <ion-input
+            #p1El
+            type="password"
+            [class.input-invalid]="isInvalidModel(form, passModel)"
+            #passModel="ngModel"
+            [(ngModel)]="senha"
+            name="senha"
+            class="form-control"
+            placeholder="*Senha"
+            autocomplete="off"
+            required
+            minlength="3"
+            maxlength="32"
+            (keydown)="tabGoNext($event, p2El)"
+          ></ion-input>
+          <div
+            item-right
+            class="input-group-append"
+            (click)="togglePassword(p1El)"
+          >
+            <span
+              [class.input-invalid]="isInvalidModel(form, passModel)"
+              class="input-group-text ion ion-eye color-blue"
+            ></span>
+          </div>
+        </ion-item>
+        <ion-item class="input-group mb-2">
+          <ion-input
+            #p2El
+            type="password"
+            [class.input-invalid]="isInvalidModel(form, pass2Model)"
+            #pass2Model="ngModel"
+            [(ngModel)]="senhaConfirmacao"
+            name="senhaConfirmacao"
+            class="form-control"
+            placeholder="*Confirme a senha"
+            (keydown)="tabGoNext($event, aceiteEl)"
+            required
+            minlength="3"
+            maxlength="32"
+          ></ion-input>
+
+          <div
+            item-right
+            class="input-group-append"
+            (click)="togglePassword(p2El)"
+          >
+            <span
+              [class.input-invalid]="isInvalidModel(form, pass2Model)"
+              class="input-group-text ion ion-eye color-blue"
+            ></span>
+          </div>
+        </ion-item>
+
+        <div class="mb-4 mt-4 d-flex align-items-center justify-content-center">
+          <div class="custom-control custom-checkbox d-flex align-items-center">
+            <input
+              #aceiteEl
+              type="checkbox"
+              (change)="toogle($event)"
+              name="aceitePolitica"
+              [(ngModel)]="aceitePolitica"
+              class="custom-control-input"
+              id="aceitePolitica"
+              required
+            />
+            <label
+              class="custom-control-label font-13 color-default font-roboto-light"
+              [class.label-invalid]="form.submitted && !aceitePolitica"
+              for="aceitePolitica"
+            >
+              *Aceito
+            </label>
+            <a
+              href="javascript:;"
+              class="font-13 text-uppercase color-blue font-weight-bold ml-2"
+              (click)="showPolitica()"
+            >
+              Política de Privacidade
+            </a>
+          </div>
+        </div>
+
+        <button ion-button round class="border border-primary mb-4" clear block>
+          Cadastrar
+        </button>
+        <button
+          type="button"
+          ion-button
+          round
+          color="primary"
+          class="mb-4"
+          block
+          (click)="navHome()"
+        >
+          Voltar
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- end main -->
+</ion-content>

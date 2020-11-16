@@ -1,0 +1,24 @@
+<ion-header class="new-header">
+    <ion-navbar class="text-center">    
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>Ouvidoria</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="new-content bg-multiple-3">
+    <ion-list>
+        <ion-card *ngFor="let service of services" class="item-ouvidoria" (click)="openService(service)">
+            <ion-item>
+                <ion-avatar item-start>
+                    <ion-icon color="primary" class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i [class]="'fa fa-stack-1x fa-inverse fa-' + service.icon"></i>
+                    </ion-icon>
+                </ion-avatar>
+                <h2>{{ service.name }}</h2>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+</ion-content>

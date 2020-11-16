@@ -1,0 +1,56 @@
+page-avaliacao {
+
+  ion-col ion-icon.fa-star {
+    color: gold;
+  }
+
+  .textarea {
+    width: 100%;
+    height: 80px;
+  }
+
+  .melhoramento {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    color: rgb(0, 95, 152);
+    height: 50px;
+  }
+  
+  .melhoramento-desmarcado {
+    background-color: rgb(209, 209, 209);
+    font-size: 17px;
+  }
+  
+  .melhoramento-marcado {
+    background-color: rgb(255, 208, 0);
+    font-size: 17px;
+  }
+
+  .font-size-40 {
+    font-size: 40px;
+  }
+
+  .width50 {
+    width: 50px;
+  }
+  
+  .width70 {
+    width: 70px;
+  }
+
+  ion-card {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ion-card-content {
+    overflow: hidden;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

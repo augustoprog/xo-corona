@@ -1,0 +1,56 @@
+<!--
+  Generated template for the MenuInformacao page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="pb-3">
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>Informacões</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+  <div padding class="bg-multiple-simple pb-0">
+  </div>
+</ion-header>
+<!-- end ion-header -->
+
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+
+  <ion-list class="list-custom">
+
+    <ion-item (click)="openPage('GovernoNoMapaPage')">
+      <div class="col-12 d-flex flex-column">
+        <h3 class="color-default font-roboto-black font-16">Governo No Mapa</h3>
+        <span class="font-10 color-light-gray-3">Onde tem?</span>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="openPage('ExpressoAntesDeIrPage')">
+      <div class="col-12 d-flex flex-column">
+        <h3 class="color-default font-roboto-black font-16">Expresso Cidadão</h3>
+        <span class="font-10 color-light-gray-3">Antes de ir ao Expresso Cidadão</span>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="openPage('NoticiasPage')" *ngIf="exibeNotifica">
+      <div class="col-10 d-flex flex-column">
+        <h3 class="color-default font-roboto-black font-16">Avisos</h3>
+        <span class="font-10 color-light-gray-3">Veja os avisos do governo para o cidadão</span>
+      </div>
+      <div class="col-2">
+        <span class="badge badge-danger font-roboto-medium round font-10 m-auto" [class.decimal]="naoLidas > 9"
+          [class.cento]="naoLidas > 99">{{ naoLidas }}</span>
+      </div>
+    </ion-item>
+
+    <!-- <ion-item (click)="openPage('ExpressoAntesDeIrPage')">
+      <h3>&nbsp;&nbsp;&nbsp;Antes de ir ao Expresso...</h3>
+    </ion-item> -->
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,31 @@
+<!--
+  Generated template for the UsuarioProgramaSocialPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Programas Sociais</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<div style="text-align: center;">
+  <h3>Selecione os programas sociais que você utiliza:</h3>
+</div>
+
+<div *ngIf="meusProgramasSociais">
+  <ion-item  text-wrap *ngFor="let item of programasSociais" >
+
+    <ion-label class="meuTitulo">{{item.titulo}}</ion-label>
+    <ion-toggle [checked]="checkProgramaSocial(item.id)" (ionChange)="toogle(item.id, $event)" value="item.id"></ion-toggle>
+
+  </ion-item>
+</div>
+
+
+</ion-content>

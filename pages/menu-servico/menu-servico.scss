@@ -1,0 +1,46 @@
+@import "theme/_layout-2.scss";
+@import "theme/_search.scss";
+@import "theme/_tab.scss";
+
+.list-service {
+  .item {
+    margin-bottom: 1rem;
+    padding: 0;
+    border: 1px solid #e8e8e8 !important;
+    box-shadow: 0 3px 5px rgba($color: #000000, $alpha: 0.1);
+    ion-thumbnail {
+      min-height: auto;
+      min-width: auto;
+      border-right: 1px solid #e8e8e8;
+      img {
+        width: auto;
+        height: auto;
+        min-height: 78px;
+        max-height: 78px;
+        margin: auto;
+      }
+    }
+    .item-inner {
+      border: none;
+      padding: 0;
+      h2 {
+        font-size: 1.25rem;
+        line-height: 14px;
+      }
+    }
+    .label {
+      display: flex;
+      padding: 0.5rem 0;
+      margin: 0 !important;
+      align-items: center;
+      background-color: #fff;
+    }
+    .badge {
+      border-radius: 4rem;
+      line-height: 0.7rem;
+      .badge-primary {
+        color: white;
+      }
+    }
+  }
+}

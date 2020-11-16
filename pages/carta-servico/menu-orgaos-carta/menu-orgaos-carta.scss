@@ -1,0 +1,64 @@
+@import "theme/_search.scss";
+page-menu-orgaos-carta {
+  .no-shadow {
+    box-shadow: unset;
+  }
+
+  .card-orgao ion-card-content {
+    h2 {
+      @extend .color-white;
+      @extend .font-22;
+    }
+    h3 {
+      @extend .color-white;
+      @extend .font-12;
+    }
+  }
+
+  ion-label {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .scroll-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  ion-item {
+    ion-label {
+      margin: 0px !important;
+      padding: 0px !important;
+      ion-card {
+        margin: 0px !important;
+      }
+    }
+  }
+
+  ion-item.item-servico {
+    ion-card-content {
+      h2 {
+        @extend .font-14;
+      }
+    }
+  }
+
+  ion-item {
+    background-color: unset !important;
+    min-height: unset !important;
+    .item-inner {
+      border-bottom: unset !important;
+    }
+    ion-card {
+      border: 1px solid #e8e8e8 !important;
+      -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.06) !important;
+      -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.06) !important;
+    }
+  }
+  ion-card.item-servico {
+    h2 {
+      @extend .font-14;
+    }
+  }
+}

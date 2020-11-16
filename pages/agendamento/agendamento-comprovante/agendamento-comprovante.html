@@ -1,0 +1,130 @@
+<ion-header class="new-header">
+  <ion-navbar hideBackButton="true" class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <step-default [active]="7"></step-default>
+
+      <h2 class="font-roboto-black font-18 text-center my-3 color-default">
+        Atendimento Agendado
+      </h2>
+
+      <div class="d-flex my-2" *ngIf="showSenha">
+        <div class="d-flex align-items-center bg-light-gray round-5 p-2 flex-1">
+          <div class="font-roboto-medium font-15 font-flex color-default">
+            <span
+              class="font-roboto-bold"
+              [textContent]="'Senha: ' + agendamento?.numeroSenha"
+            ></span>
+          </div>
+        </div>
+      </div>
+      <!-- end senha -->
+
+      <ng-container *ngIf="showSenha; else newBoxProtocolo">
+        <div class="line-height-default mb-2">
+          <span class="font-roboto-bold color-default font-15 d-block"
+            >Protocolo:</span
+          >
+          <span
+            class="font-roboto-regular color-default d-block font-12"
+            [textContent]="agendamento?.protocolo"
+          ></span>
+        </div>
+      </ng-container>
+      <ng-template #newBoxProtocolo>
+        <div class="d-flex my-2">
+          <div
+            class="d-flex align-items-center bg-light-gray round-5 p-2 flex-1"
+          >
+            <div class="font-roboto-medium font-15 font-flex color-default">
+              <span class="font-roboto-bold"
+                >Protocolo:
+                <span
+                  class="font-roboto-regular color-default d-block font-12"
+                  [textContent]="agendamento?.protocolo"
+                ></span
+              ></span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <!-- end Protocolo -->
+
+      <agendamento-servico-card
+        [agendamento]="agendamento"
+      ></agendamento-servico-card>
+      <div class="splitter mb-3">
+        <h2 class="font-roboto-black font-18  my-3 color-default">
+          Dados do Requerente
+        </h2>
+        <agendamento-dados-requerente
+          [showOnlyHeader]="false"
+          [pessoa]="agendamento?.pessoa"
+          [infosAdicionais]="agendamento?.infosAdicionaisAgendamentos"
+        ></agendamento-dados-requerente>
+      </div>
+
+      <div
+        class="mb-3"
+        *ngIf="
+          agendamento?.relacionados && agendamento?.relacionados.length != 0
+        "
+      >
+        <h2 class="font-roboto-black font-18  my-3 color-default">
+          Dependentes
+        </h2>
+        <ng-container *ngFor="let dependente of agendamento?.relacionados">
+          <agendamento-dados-requerente
+            [isDependent]="true"
+            [showOnlyHeader]="false"
+            [pessoa]="dependente"
+            [infosAdicionais]="
+              dependente?.infoAdicionaisDTO?.informacoesAdicionais
+            "
+          ></agendamento-dados-requerente>
+        </ng-container>
+      </div>
+
+      <div class="mb-4">
+        <agendamento-info-adicionais
+          [requisitos]="
+            agendamento?.horarioAgenda?.servicoUnidade?.servico?.requisitos
+          "
+        ></agendamento-info-adicionais>
+      </div>
+      <!-- end div -->
+      <button
+        type="button"
+        ion-button
+        round
+        color="primary"
+        (click)="compartilhar()"
+        block
+      >
+        Visualizar
+      </button>
+      <button
+        type="button"
+        ion-button
+        round
+        color="primary"
+        (click)="concluir()"
+        block
+      >
+        <span [textContent]="menu ? 'Voltar' : 'Concluir'"></span>
+      </button>
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card -->
+</ion-content>
+<!-- end ion-content -->

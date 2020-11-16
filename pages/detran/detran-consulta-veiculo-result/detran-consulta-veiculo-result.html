@@ -1,0 +1,694 @@
+<!--
+  Generated template for the DetranConsultaVeiculoResult page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>
+      DETRAN-PE
+    </ion-title>
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-multiple-2 bg-avatar-white">
+  <ng-container *ngIf="!erro; else errorDiv">
+
+    <ion-card>
+      <ion-card-content>
+        <h3 class="font-roboto-bold color-default font-15 font-weight-bold text-center mb-3">Dados do Veículo</h3>
+
+        <div *ngIf="!erro">
+          <div class="d-flex flex-row align-items-center">
+            <div class="col pl-0">
+              <div class="bg-light-gray round d-inline round-5 p-2">
+                <span class="font-roboto-bold font-14 color-default">Placa:</span>
+                <span class="font-22 font-roboto-regular color-default text-uppercase" [textContent]="placa"></span>
+              </div>
+            </div>
+            <!-- end col -->
+            <div class="card-mark">
+              <div class="card-mark-header">
+                <div class="font-roboto-bold font-12 bg-blue text-center color-white card-mark-item brd-b-blue-2 text-uppercase">
+                  fab
+                </div>
+                <div class="font-roboto-bold font-12 bg-blue text-center color-white card-mark-item brd-b-blue-2 text-uppercase">
+                  mod
+                </div>
+              </div>
+              <!-- end card-mark-header -->
+              <div class="card-mark-footer">
+                <div class="font-roboto-regular font-11 bg-blue text-center color-white card-mark-item" [textContent]="ano_fab">
+                </div>
+                <div class="font-roboto-regular font-11 bg-blue text-center color-white card-mark-item" [textContent]="ano_modelo">
+                </div>
+              </div>
+              <!-- end card-mark-footer -->
+            </div>
+            <!-- end card-mark -->
+          </div>
+          <!-- end flex-row -->
+
+          <div class="d-flex">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Marca/Modelo:</span>
+              <span class="font-roboto-regular font-12 color-default" [textContent]="marca_modelo"></span>
+            </div>
+            <!-- end col -->
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Chassi:</span>
+              <span class="font-roboto-regular font-12 color-default" [textContent]="chassi"></span>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end d-flex -->
+
+          <div class="d-flex">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Espécie Tipo:</span>
+              <span class="font-roboto-regular font-12 color-default" [textContent]="tipo"></span>
+            </div>
+            <!-- end col -->
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Categoria:</span>
+              <span class="font-roboto-regular font-12 color-default" [textContent]="categoria"></span>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end d-flex -->
+
+          <div class="d-flex">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Cor:</span>
+              <span class="font-roboto-regular font-12 color-default" [textContent]="cor"></span>
+            </div>
+            <!-- end col -->
+            <div class="card-mark col p-0">
+              <div class="card-mark-one">
+                <div class="bg-blue card-mark-item d-flex px-1">
+                  <img src='assets/images/gas-pump.png' alt="gasolina" class="align-self-center" />
+                  <div class="d-flex flex-column ml-1">
+                    <span class="font-roboto-regular font-11 text-center color-white" *ngFor="let item of tipoComb; let first = first;" [ngClass]="{'brd-b-blue-2': tipoComb.length > 1 && first}"
+                      [textContent]="item">
+                    </span>
+                  </div>
+                  <!-- end d-flex -->
+                </div>
+                <!-- end card-mark-item -->
+              </div>
+              <!-- end card-mark-one -->
+            </div>
+            <!-- end card-mark -->
+          </div>
+          <!-- end d-flex -->
+
+          <hr>
+
+          <div class="card-step step-blue">
+            <div class="card-step-item step-item-big" step="Capacidade">
+              <div class="font-roboto-light font-14 color-blue step-item" [textContent]="capacidade">
+              </div>
+            </div>
+            <div class="card-step-item step-item-small">
+              <div class="step-item">
+                &nbsp;
+              </div>
+            </div>
+            <div class="card-step-item step-item-big" step="Potencia">
+              <div class="font-roboto-light font-14 color-blue step-item" [textContent]="potencia">
+              </div>
+            </div>
+            <div class="card-step-item step-item-small">
+              <div class="step-item">
+                &nbsp;
+              </div>
+            </div>
+            <div class="card-step-item step-item-big" step="Cilindrada">
+              <div class="font-roboto-light font-14 color-blue step-item" [textContent]="cilindrada">
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+      <!-- end ion-card-content -->
+    </ion-card>
+    <!-- end ion-card -->
+
+    <ion-card>
+      <ion-card-content>
+        <h3 class="font-roboto-bold color-default font-15 font-weight-bold text-center mb-1">Observações</h3>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h3 class="font-roboto-bold color-default font-15 font-weight-bold text-center mb-1">Restrições</h3>
+        <div class="font-roboto-regular font-12 color-default" [textContent]="restricoes"></div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h3 class="font-roboto-bold color-default font-15 font-weight-bold text-center mb-1">Placa Reflexiva</h3>
+        <div class="font-roboto-regular font-12 color-default" [textContent]="placa_reflexiva"></div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center">
+          <i class="ion ion-android-calendar font-32 mr-1"></i> Último CRLV Emitido:
+          <span class="font-20 ml-1" [textContent]="oCLRV.ExercicioCRLV?oCLRV.ExercicioCRLV:'Nada Consta'"></span>
+        </h3>
+        <!-- end h3 -->
+
+        <div class="d-flex flex-row">
+          <div class="col pl-0 d-flex flex-column">
+            <span class="color-default font-roboto-bold font-14">Emissão:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="oCLRV.SetorEmissaoCRLV + ' em ' + oCLRV.DataEmissaoCRLV"></span>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end d-flex -->
+
+        <div class="d-flex flex-row">
+          <div class="col pl-0 d-flex flex-column">
+            <span class="color-default font-roboto-bold font-14">Entrega:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="oCLRV.DataEntregaCRLV ?oCLRV.DataEntregaCRLV: ' Não
+            informado'"></span>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end d-flex -->
+
+        <div class="d-flex flex-row">
+          <div class="col pl-0 d-flex flex-column">
+            <span class="color-default font-roboto-bold font-14">Destino:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="oCLRV.DestinoCRLV?oCLRV.DestinoCRLV:'Não informado'"></span>
+          </div>
+          <!-- end col -->
+          <div class="col d-flex flex-column">
+            <span class="color-default font-roboto-bold font-14">Retirante:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="oCLRV.RetiranteCRLV?oCLRV.RetiranteCRLV:'Não informado'"></span>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end d-flex -->
+
+        <div class="d-flex flex-row">
+          <div class="col pl-0 d-flex flex-column">
+            <span class="color-default font-roboto-bold font-14">Devolução:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="oCLRV.DataDevolucaoCRLV?oCLRV.DataDevolucaoCRLV: ' Não
+              informado'"></span>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end d-flex -->
+
+        <div class="d-flex flex-row">
+          <div class="col pl-0 d-flex flex-column">
+            <span class="color-default font-roboto-bold font-14">Motivo:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="oCLRV.MotivoDevolucaoCRLV?oCLRV.MotivoDevolucaoCRLV: ' Não
+              informado'"></span>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end d-flex -->
+
+      </ion-card-content>
+    </ion-card>
+
+    <h2 class="font-18 font-roboto-black color-default text-center">Detalhamento de Débitos Licenciamento</h2>
+    <ng-container *ngIf="totalLicenciamento > 0">
+      <ion-card *ngFor="let item of resultadoLicenciamento">
+        <ion-card-content>
+          <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center justify-content-center">
+            <span [textContent]="item.TipoDebito"></span>
+            <span class="ml-1" [textContent]="item.Exercicio"></span>
+          </h3>
+          <!-- end h3 -->
+
+          <div class="d-flex flex-row">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Vencimento:</span>
+              <div class="d-flex align-items-center">
+                <i class="ion ion-android-calendar color-default font-32 mr-1"></i>
+                <span class="font-roboto-regular font-18 color-default" [textContent]="item?.DataVencimento?item.DataVencimento?.substring(0,10):''"></span>
+              </div>
+            </div>
+            <!-- end col -->
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Valor:</span>
+              <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+                R$
+                <span class="valor" [textContent]="item?.ValorReal"></span>
+              </span>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end d-flex -->
+
+          <hr class="my-2">
+
+          <div class="col pl-0 d-flex align-items-baseline">
+            <span class="color-default font-roboto-bold font-14 mr-1">Cota:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]=" item.Parcela && item.Parcela != 99?item.Parcela:'Única'"></span>
+          </div>
+          <!-- end col -->
+
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 d-flex align-items-center">
+            <span class="color-default font-roboto-bold font-14 mr-1">Total de Débitos em Licenciamentos:</span>
+            <span class="fake-input brd-light-red color-light-red font-20 d-flex align-items-center">
+              <span class="font-weight-bold">R$</span>
+              <span class="valor" [textContent]="totalLicenciamento"></span>
+            </span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+
+    <ng-container *ngIf="totalLicenciamento==0">
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 font-roboto-regular font-12 color-default">
+            Nada Consta
+          </div>
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+
+    <h2 class="font-18 font-roboto-black color-default text-center">Taxas</h2>
+    <ng-container *ngIf="totalTaxas > 0">
+      <ion-card *ngFor="let item of resultadoTaxas">
+        <ion-card-content>
+          <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center justify-content-center">
+            <span [textContent]="item.TipoDebito"></span>
+            <span class="ml-1" [textContent]="item.Exercicio"></span>
+          </h3>
+          <!-- end h3 -->
+          <div class="d-flex flex-row">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Vencimento:</span>
+              <div class="d-flex align-items-center">
+                <i class="ion ion-android-calendar color-default font-32 mr-1"></i>
+                <span class="font-roboto-regular font-18 color-default" [textContent]="item?.DataVencimento?item.DataVencimento?.substring(0,10):''"></span>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Valor:</span>
+              <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+                R$
+                <span class="valor" [textContent]="item?.ValorReal"></span>
+              </span>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end d-flex -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 d-flex align-items-center justify-content-between">
+            <span class="color-default font-roboto-bold font-14 mr-1">Total Taxas:</span>
+            <span class="fake-input brd-light-red color-light-red font-20">
+              <span class="font-weight-bold">R$</span>
+              <span class="valor" [textContent]="totalTaxas"></span>
+            </span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+    </ng-container>
+    <!-- end ng-container -->
+
+    <ng-container *ngIf="totalTaxas==0">
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 font-roboto-regular font-12 color-default">
+            Nada Consta
+          </div>
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+
+    <h2 class="font-18 font-roboto-black color-default text-center">Multas</h2>
+    <ng-container *ngIf="totalMultas > 0">
+      <ion-card *ngFor="let item of resultadoMultas">
+        <ion-card-content>
+          <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center justify-content-center">
+            <span [textContent]="item.TipoDebito"></span>
+            <span class="ml-1" [textContent]="item.Exercicio"></span>
+          </h3>
+          <!-- end h3 -->
+
+          <div class="d-flex flex-column">
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa"></div>
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa2"></div>
+          </div>
+
+          <div class="d-flex flex-row">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Vencimento:</span>
+              <div class="d-flex align-items-center">
+                <i class="ion ion-android-calendar color-default font-32 mr-1"></i>
+                <span class="font-roboto-regular font-18 color-default" [textContent]="item?.DataVencimento?item.DataVencimento?.substring(0,10):''"></span>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Valor:</span>
+              <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+                R$
+                <span class="valor" [textContent]="item?.ValorReal"></span>
+              </span>
+            </div>
+            <!-- end col -->
+
+          </div>
+          <!-- end d-flex -->
+
+          <hr class="my-2">
+
+          <div class="col pl-0 d-flex align-items-baseline">
+            <span class="color-default font-roboto-bold font-14 mr-1">Cota:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="item.Parcela && item.Parcela != 99?item.Parcela:'Única'"></span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 d-flex align-items-center justify-content-between">
+            <span class="color-default font-roboto-bold font-14 mr-1">Total de Débitos em Multas:</span>
+            <span class="fake-input brd-light-red color-light-red font-20">
+              <span class="font-weight-bold">R$</span>
+              <span class="valor" [textContent]="totalMultas"></span>
+            </span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+    </ng-container>
+    <!-- end ng-container -->
+
+    <ng-container *ngIf="totalMultas==0">
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 font-roboto-regular font-12 color-default">
+            Nada Consta
+          </div>
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+
+    <h2 class="font-18 font-roboto-black color-default text-center">Multas com Recurso/Suspensivo</h2>
+    <ng-container *ngIf="totalMultasRecursoSuspensivo > 0">
+      <ion-card *ngFor="let item of resultadoMultasRecursoSuspensivo">
+        <ion-card-content>
+          <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center justify-content-center">
+            <span [textContent]="item.TipoDebito"></span>
+            <span class="ml-1" [textContent]="item.Exercicio"></span>
+          </h3>
+          <!-- end h3 -->
+
+          <div class="d-flex flex-column">
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa"></div>
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa2"></div>
+          </div>
+
+          <div class="d-flex flex-row">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Vencimento:</span>
+              <div class="d-flex align-items-center">
+                <i class="ion ion-android-calendar color-default font-32 mr-1"></i>
+                <span class="font-roboto-regular font-18 color-default" [textContent]="item?.DataVencimento?item.DataVencimento?.substring(0,10):''"></span>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Valor:</span>
+              <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+                R$
+                <span class="valor" [textContent]="item?.ValorReal"></span>
+              </span>
+            </div>
+            <!-- end col -->
+
+          </div>
+          <!-- end d-flex -->
+
+          <hr class="my-2">
+
+          <div class="col pl-0 d-flex align-items-baseline">
+            <span class="color-default font-roboto-bold font-14 mr-1">Cota:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="item.Parcela && item.Parcela != 99?item.Parcela:'Única'"></span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 d-flex align-items-center justify-content-between">
+            <span class="color-default font-roboto-bold font-14 mr-1">Total Taxas:</span>
+            <span class="fake-input brd-light-red color-light-red font-20">
+              <span class="font-weight-bold">R$</span>
+              <span class="valor" [textContent]="totalMultas"></span>
+            </span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+    </ng-container>
+    <!-- end ng-container -->
+
+    <ng-container *ngIf="totalMultasRecursoSuspensivo==0">
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 font-roboto-regular font-12 color-default">
+            Nada Consta
+          </div>
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+
+    <h2 class="font-18 font-roboto-black color-default text-center">Infrações Suspensas por Ordem Judicial</h2>
+    <ng-container *ngIf="totalInfracoesSuspOrdemJudicial > 0">
+      <ion-card *ngFor="let item of resultadoInfracoesSuspOrdemJudicial">
+        <ion-card-content>
+          <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center justify-content-center">
+            <span [textContent]="item.TipoDebito"></span>
+            <span class="ml-1" [textContent]="item.Exercicio"></span>
+          </h3>
+          <!-- end h3 -->
+
+          <div class="d-flex flex-column">
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa"></div>
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa2"></div>
+          </div>
+
+          <div class="d-flex flex-row">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Vencimento:</span>
+              <div class="d-flex align-items-center">
+                <i class="ion ion-android-calendar color-default font-32 mr-1"></i>
+                <span class="font-roboto-regular font-18 color-default" [textContent]="item?.DataVencimento?item.DataVencimento?.substring(0,10):''"></span>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Valor:</span>
+              <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+                R$
+                <span class="valor" [textContent]="item?.ValorReal"></span>
+              </span>
+            </div>
+            <!-- end col -->
+
+          </div>
+          <!-- end d-flex -->
+
+          <hr class="my-2">
+
+          <div class="col pl-0 d-flex align-items-baseline">
+            <span class="color-default font-roboto-bold font-14 mr-1">Cota:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="item.Parcela && item.Parcela != 99?item.Parcela:'Única'"></span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 d-flex align-items-center justify-content-between">
+            <span class="color-default font-roboto-bold font-14 mr-1">Total Taxas:</span>
+            <span class="fake-input brd-light-red color-light-red font-20">
+              <span class="font-weight-bold">R$</span>
+              <span class="valor" [textContent]="totalMultas"></span>
+            </span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+    </ng-container>
+    <!-- end ng-container -->
+
+    <ng-container *ngIf="totalInfracoesSuspOrdemJudicial==0">
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 font-roboto-regular font-12 color-default">
+            Nada Consta
+          </div>
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+
+    <h2 class="font-18 font-roboto-black color-default text-center">Débitos Suspensos por Ordem Judicial</h2>
+    <ng-container *ngIf="totalDebitoSuspOrdemJudicial > 0">
+      <ion-card *ngFor="let item of resultadoDebitoSuspOrdemJudicial">
+        <ion-card-content>
+          <h3 class="bg-light-gray round round-5 p-2 d-flex font-roboto-bold font-15 color-default align-items-center justify-content-center">
+            <span [textContent]="item.TipoDebito"></span>
+            <span class="ml-1" [textContent]="item.Exercicio"></span>
+          </h3>
+          <!-- end h3 -->
+
+          <div class="d-flex flex-column">
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa"></div>
+            <div class="font-roboto-regular font-12 color-default mb-2" [textContent]="item?.Multa2"></div>
+          </div>
+
+          <div class="d-flex flex-row">
+            <div class="col pl-0 d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Vencimento:</span>
+              <div class="d-flex align-items-center">
+                <i class="ion ion-android-calendar color-default font-32 mr-1"></i>
+                <span class="font-roboto-regular font-18 color-default" [textContent]="item?.DataVencimento?item.DataVencimento?.substring(0,10):''"></span>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col d-flex flex-column">
+              <span class="color-default font-roboto-bold font-14">Valor:</span>
+              <span class="fake-input font-weight-bold brd-blue color-blue font-18">
+                R$
+                <span class="valor" [textContent]="item?.ValorReal"></span>
+              </span>
+            </div>
+            <!-- end col -->
+
+          </div>
+          <!-- end d-flex -->
+
+          <hr class="my-2">
+
+          <div class="col pl-0 d-flex align-items-baseline">
+            <span class="color-default font-roboto-bold font-14 mr-1">Cota:</span>
+            <span class="font-roboto-regular font-12 color-default" [textContent]="item.Parcela && item.Parcela != 99?item.Parcela:'Única'"></span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 d-flex align-items-center justify-content-between">
+            <span class="color-default font-roboto-bold font-14 mr-1">Total Taxas:</span>
+            <span class="fake-input brd-light-red color-light-red font-20">
+              <span class="font-weight-bold">R$</span>
+              <span class="valor" [textContent]="totalMultas"></span>
+            </span>
+          </div>
+          <!-- end col -->
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+
+    </ng-container>
+    <!-- end ng-container -->
+
+    <ng-container *ngIf="totalDebitoSuspOrdemJudicial==0">
+      <ion-card>
+        <ion-card-content>
+          <div class="col pl-0 font-roboto-regular font-12 color-default">
+            Nada Consta
+          </div>
+        </ion-card-content>
+        <!-- end ion-card-content -->
+      </ion-card>
+      <!-- end ion-card -->
+    </ng-container>
+    <!-- end ng-container -->
+  </ng-container>
+  <ng-template #errorDiv>
+    <ion-card>
+      <ion-card-content>
+        <div class="font-roboto-black text-center font-15 color-default mb-3">Nenhuma informação encontrada.</div>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+</ion-content>
+<!-- end ion-conten -->

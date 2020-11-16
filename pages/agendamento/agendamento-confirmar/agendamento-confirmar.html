@@ -1,0 +1,136 @@
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <form #form="ngForm" novalidate (submit)="submitConfirmar(form)">
+        <step-default [active]="6"></step-default>
+
+        <h2 class="font-roboto-black font-18 text-center my-3 color-default">
+          Confirme o Agendamento
+        </h2>
+
+        <span class="font-roboto-regular color-red d-block font-12"
+          >Seu agendamento ainda não foi confirmado. Leia as informações abaixo
+          e confirme no final da página.</span
+        >
+
+        <div class="splitter my-2">
+          <agendamento-servico-card
+            [agendamento]="agendamento"
+          ></agendamento-servico-card>
+        </div>
+
+        <div class="splitter mb-3">
+          <h2 class="font-roboto-black font-18  my-3 color-default">
+            Dados do Requerente
+          </h2>
+          <agendamento-dados-requerente
+            [pessoa]="agendamento?.pessoa"
+            [infosAdicionais]="agendamento?.infosAdicionaisAgendamentos"
+          ></agendamento-dados-requerente>
+        </div>
+
+        <div
+          class="mb-3"
+          *ngIf="
+            agendamento?.relacionados && agendamento?.relacionados.length != 0
+          "
+        >
+          <h2 class="font-roboto-black font-18  my-3 color-default">
+            Dependentes
+          </h2>
+          <ng-container
+            *ngFor="let dependente of agendamento?.relacionados; let i = index"
+          >
+            <agendamento-dados-requerente
+              [isDependent]="true"
+              [pessoa]="dependente"
+              [infosAdicionais]="
+                dependente?.infoAdicionaisDTO?.informacoesAdicionais
+              "
+            ></agendamento-dados-requerente>
+          </ng-container>
+        </div>
+
+        <div class="mb-2">
+          <agendamento-info-adicionais
+            [informacoes]="informacoesAdicionaisServico"
+            [requisitos]="
+              agendamento?.horarioAgenda?.servicoUnidade?.servico?.requisitos
+            "
+          ></agendamento-info-adicionais>
+        </div>
+        <!-- end div -->
+
+        <div class="mb-4 mt-4 d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center">
+            <!-- <input
+              type="checkbox"
+              name="aceitePolitica2"
+              [(ngModel)]="aceitePolitica"
+              #aceite="ngModel"
+              class="custom-control-input"
+              id="aceitePolitica2"
+              required
+              [class.input-invalid]="
+                (form.submitted || aceite.touched) && aceite.invalid
+              "
+            />
+            -->
+            <ion-checkbox
+              [(ngModel)]="aceitePolitica"
+              name="aceitePolitica2"
+              #aceite="ngModel"
+              id="aceitePolitica2"
+              required="true"
+              [class.input-invalid]="
+                (form.submitted || !aceitePolitica) && aceite.invalid
+              "
+            ></ion-checkbox>
+            <label
+              (click)="aceitePolitica = !aceitePolitica"
+              class="ml-2 mb-0 font-13 color-default font-roboto-bold"
+              for="aceitePolitica2"
+              >Estou de acordo com os requisitos citados acima.</label
+            >
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <button
+            class="mr-1"
+            type="button"
+            ion-button
+            round
+            color="primary"
+            block
+            (click)="voltar()"
+          >
+            Voltar
+          </button>
+          <button
+            type="submit"
+            class="ml-1"
+            ion-button
+            round
+            color="primary"
+            block
+          >
+            Confirmar
+          </button>
+        </div>
+      </form>
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card -->
+</ion-content>
+<!-- end ion-content -->

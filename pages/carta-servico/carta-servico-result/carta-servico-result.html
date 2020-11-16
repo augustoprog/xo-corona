@@ -1,0 +1,356 @@
+<!--
+  Generated template for the DetranConsultaCnhResult page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title [textContent]="servico?.categoria?.orgao?.sigla">
+    </ion-title>
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-multiple-2 bg-avatar-white">
+  <ion-card>
+    <ion-card-content>
+      <h3 class="font-roboto-bold color-default font-18 font-weight-bold text-center mb-3"
+        [textContent]="servico?.nome"></h3>
+      <div class="line-height-default mb-2" *ngIf="servico?.descricao">
+        <div class="color-default font-weight-normal pre-line font-15" *ngIf="servico?.descricao"
+          [innerHTML]="servico?.descricao"></div>
+      </div>
+      <!--
+        <p class="text color-default pre-line mb-2" *ngIf="servico?.descricao" [innerHTML]="servico?.descricao"></p>
+        -->
+
+      <div class="line-height-default mb-2" *ngIf="servico?.valor">
+        <span class="text font-roboto-bold color-default font-15 font-weight-bold">
+          Valor:
+          <span class="text color-default font-weight-normal pre-line" [innerHTML]="servico?.valor"></span>
+        </span>
+      </div>
+      <!-- <div class="row mb-2" *ngIf="servico?.valor || servico?.tempoEntrega">
+        <div class="col-12" *ngIf="servico?.valor">
+          <span class="font-roboto-bold color-default font-15 font-weight-bold">
+            Valor:
+          </span>
+          <span class="fake-input font-weight-bold brd-blue color-blue font-16">
+            R$
+            <span class="valor" [innerHTML]="servico?.valor"></span>
+          </span>
+        </div>
+
+      </div> -->
+      <div class="line-height-default mb-2" *ngIf="servico?.tempoEntrega">
+        <span class="text font-roboto-bold color-default font-15 font-weight-bold">
+          Tempo:
+          <span class="text color-default font-weight-normal pre-line" [innerHTML]="servico?.tempoEntrega"></span>
+        </span>
+      </div>
+      <!-- end row -->
+
+      <div class="line-height-default mb-2" *ngIf="listaPublicoAlvo">
+        <span class="font-roboto-bold color-default font-15 font-weight-bold">
+          Publico Alvo:
+        </span>
+        <ng-container *ngFor="let publico of listaPublicoAlvo; last as last">
+          <span class="text color-default" [textContent]='publico?.publicoAlvo?.titulo + (last? ".": ", ")'></span>
+
+        </ng-container>
+
+      </div>
+      <!-- end div -->
+      <div class="line-height-default mb-2" *ngIf="servico?.requisitos">
+        <span class="text font-roboto-bold color-default font-15 font-weight-bold">
+          Requisitos:
+        </span>
+        <div class="text color-default font-weight-normal pre-line font-15" [innerHTML]="servico?.requisitos"></div>
+      </div>
+      <!-- end div -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isAgendavel" (click)="goToAgendamento()">
+    <ion-item>
+      <ion-card-content>
+        <div class="d-flex align-items-center justify-content-between">
+          <h2 class="font-roboto-bold font-18 color-default mb-0">
+            Realizar Agendamento
+          </h2>
+          <span class="bg-blue icon-custom">
+            <img class="img-fluid card-logo" src="assets/images/agendamento-icon.svg" alt="Agendar" />
+          </span>
+        </div>
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+  <ion-item class="item-no-pad">
+    <ion-card>
+      <ion-card-content>
+
+        <div *ngIf="exibeAvalia" class="custom-segment">
+          <div class="segment-header">
+              <ion-segment [(ngModel)]="formasAvaliacao">
+                  <ion-segment-button style="height: 4rem;" value="avaliacao" (click)="chamarAvaliacao()">
+                      <ion-icon class="fa fa-thumbs-o-up iconThumbsUp"></ion-icon>
+                      Avalie esse serviço
+                  </ion-segment-button>
+              </ion-segment>
+          </div>
+        </div>
+
+        <div class="custom-segment"
+          *ngIf="servicosTelefonicos?.length>0 || listaUnidadesAtendimento?.length>0 || servicosOnline?.length>0">
+          <div class="segment-header">
+            <ion-segment [(ngModel)]="formasAtendimento">
+              <ion-segment-button value="presencial" *ngIf="listaUnidadesAtendimento?.length>0">
+                Presencial
+              </ion-segment-button>
+              <ion-segment-button value="internet" *ngIf="servicosOnline?.length>0">
+                Internet
+              </ion-segment-button>
+              <ion-segment-button value="telefonico" *ngIf="servicosTelefonicos?.length>0">
+                Telefônico
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+          <!-- end segment-header -->
+          <div [ngSwitch]="formasAtendimento" class="segment-content pt-0">
+
+            <div *ngSwitchCase="'presencial'">
+
+              <div class="searchbar-custom custom-blue py-2 round-none">
+                <ion-item class="item-search">
+                  <ion-input type="text" [(ngModel)]="search" name="search" class="form-control" autocomplete="off"
+                    spellcheck="false" autocorrect="off" placeholder="Buscar" (ionFocus)="fixScroll()"></ion-input>
+                </ion-item>
+                <!--
+              <ion-searchbar placeholder="Buscar" [(ngModel)]="search"></ion-searchbar>
+              -->
+              </div>
+
+              <div *ngFor="let unidade of listaUnidadesAtendimento" class="item-segmento">
+
+                <ion-card *ngIf="!search || unidade.unidadeAtendimento.nome.indexOf(search) != -1"
+                  class="round-none mb-0">
+                  <input #toggle type="hidden" value="false" />
+
+                  <ion-card-header text-wrap class="round-none" [class.collapse-active]="toggle.value == 'true'">
+                    <!-- add class no ion-card-header collapse-active -->
+                    <div class="py-1 row align-items-center justify-content-between">
+                      <span [class.color-default]="toggle.value == 'true'"
+                        [textContent]="unidade.unidadeAtendimento.nome" class="col-9 pr-0 collapse-title"></span>
+                      <span class="col justify-content-center">
+                        <button class="collapse-group btn-round-circle p-0"
+                          (click)="toggle.value == 'true' ? toggle.value = 'false':toggle.value = 'true'">
+                          <span class="collapse-ico ion-chevron-down font-20 pt-1"></span>
+                        </button>
+                      </span>
+                    </div>
+                  </ion-card-header>
+                  <!-- end ion-card-header -->
+
+                  <ion-card-content class="bg-white" *ngIf="toggle.value == 'true'">
+
+                    <div class="row pb-0 pt-0" padding>
+                      <div class="col-9 pr-0 item-endereco">
+                        <div class="row">
+                          <div class="col-1">
+                            <span class="ion ion-ios-location color-blue font-12"></span>
+                          </div>
+                          <!-- end col-2 -->
+                          <div class="col-10 pl-0">
+                            <span class="font-12 font-roboto-regular color-default"
+                              [textContent]="unidade.unidadeAtendimento.enderecos[0].logradouro"></span>
+                            <span class="font-12 font-roboto-regular color-default"
+                              *ngIf="unidade?.unidadeAtendimento?.enderecos[0]?.numero">
+                              -
+                              <span class="color-default"
+                                [textContent]="unidade.unidadeAtendimento.enderecos[0].numero"></span>
+                              &nbsp;
+                            </span>
+                            <span class="font-12 font-roboto-regular  color-default"
+                              *ngIf="unidade?.unidadeAtendimento?.enderecos[0]?.bairro">
+                              -
+                              <span class="color-default"
+                                [textContent]="unidade.unidadeAtendimento.enderecos[0].bairro"></span>
+                              &nbsp;
+                            </span>
+
+                            <span class="font-12 font-roboto-regular  color-default"
+                              *ngIf="unidade?.unidadeAtendimento?.enderecos[0]?.municipio">
+                              -
+                              <span class="color-default"
+                                [textContent]="unidade.unidadeAtendimento.enderecos[0].municipio"></span>
+                              &nbsp;
+                            </span>
+
+                            <span class="font-12 font-roboto-regular color-default"
+                              *ngIf="unidade?.unidadeAtendimento?.enderecos[0]?.cep">
+                              <span [textContent]="unidade.unidadeAtendimento.enderecos[0].cep"></span>
+                              &nbsp;
+                            </span>
+                          </div>
+                          <!-- end col-10 -->
+                        </div>
+                        <!-- end item-endereco -->
+                        <div class="row item-contato" *ngIf="unidade?.unidadeAtendimento?.contatos">
+                          <div class="row col-12" *ngFor="let contato of unidade.unidadeAtendimento.contatos">
+                            <div class="col-1">
+                              <span class="ion ion-ios-telephone color-blue font-12"></span>
+                            </div>
+                            <!-- end col-2 -->
+                            <div class="col-10 pl-0">
+
+                              <a href (click)="$event.preventDefault();ligarNumero(contato.descricao)"
+                                [textContent]="contato.descricao" class="font-12 font-roboto-regular"></a>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end item-contato -->
+                      </div>
+                      <!-- end row -->
+
+                      <div class="col d-flex justify-content-center">
+                        <button class="btn-clear btn-round-circle p-0 flex-column" (click)="openLocation(unidade)">
+                          <span class="ion ion-ios-location round locaiton bg-blue color-white"></span>
+                          <span class="color-blue font-roboto-regular font-11">Mapa</span>
+                        </button>
+                      </div>
+
+                    </div>
+                    <!-- end row -->
+
+                    <div padding *ngIf="unidade?.tipoAgendamento?.titulo" class="pb-0 pt-0 mb-2">
+                      <span class="font-roboto-bold font-12 color-default">Agendamento: </span>
+                      <span class="font-10 badge badge-success round color-white"
+                        [ngClass]="{'badge-danger': unidade.tipoAgendamento.titulo !='DISPONÍVEL' }"
+                        [textContent]="captalizeText(unidade.tipoAgendamento.titulo)"></span>
+                    </div>
+
+
+                    <div padding *ngIf="unidade?.tipoAgendamento?.titulo"
+                      class="font-roboto-bold font-12 pb-0 pt-0 color-default">Horário
+                      de Funcionamento:</div>
+                    <div *ngIf="unidade?.tipoAgendamento?.titulo" class="schedule-segmento bg-yellow">
+                      <!--INICIO-->
+                      <ion-grid>
+                        <div padding class="d-flex pt-2 pb-0 schedule-header">
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'SEG')">SEG
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'TER')">TER
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'QUA')">QUA
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'QUI')">QUI
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'SEX')">SEX
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'SAB')">SAB
+                          </ion-col>
+                        </div>
+                        <div padding class="d-flex pt-0 pb-2 schedule-content">
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'SEG')">
+                            <span *ngFor="let ho of unidade.unidadeAtendimento.listaHorariosFuncionamento">
+                              <span class="font_tabela" *ngIf="ho.siglaDiaSemana=='SEG'">{{ho.horaInicio}}
+                                {{ho.horaFim}}</span>
+                            </span>
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'TER')">
+                            <span *ngFor="let ho of unidade.unidadeAtendimento.listaHorariosFuncionamento">
+                              <span *ngIf="ho.siglaDiaSemana=='TER'">{{ho.horaInicio}}
+                                {{ho.horaFim}}</span>
+                            </span>
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'QUA')">
+                            <span *ngFor="let ho of unidade.unidadeAtendimento.listaHorariosFuncionamento">
+                              <span *ngIf="ho.siglaDiaSemana=='QUA'">{{ho.horaInicio}}
+                                {{ho.horaFim}}</span>
+                            </span>
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'QUI')">
+                            <span *ngFor="let ho of unidade.unidadeAtendimento.listaHorariosFuncionamento">
+                              <span *ngIf="ho.siglaDiaSemana=='QUI'">{{ho.horaInicio}}
+                                {{ho.horaFim}}</span>
+                            </span>
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'SEX')">
+                            <span *ngFor="let ho of unidade.unidadeAtendimento.listaHorariosFuncionamento">
+                              <span *ngIf="ho.siglaDiaSemana=='SEX'">{{ho.horaInicio}}
+                                {{ho.horaFim}}</span>
+                            </span>
+                          </ion-col>
+                          <ion-col *ngIf="temDia(unidade.unidadeAtendimento.listaHorariosFuncionamento, 'SAB')">
+                            <span *ngFor="let ho of unidade.unidadeAtendimento.listaHorariosFuncionamento">
+                              <span *ngIf="ho.siglaDiaSemana=='SAB'">{{ho.horaInicio}}
+                                {{ho.horaFim}}</span>
+                            </span>
+                          </ion-col>
+                        </div>
+                        <!-- end d-flex-->
+                      </ion-grid>
+                      <!-- end ion-grid -->
+                    </div>
+                    <!-- end schedule-segmento -->
+
+                    <!--FIM-->
+                  </ion-card-content>
+                </ion-card>
+              </div>
+              <!-- end item-segmento -->
+
+            </div>
+            <!-- end precencial -->
+
+            <div *ngSwitchCase="'internet'" class="mt-3">
+              <div *ngFor="let so of servicosOnline" class="item-segmento">
+                <ion-card>
+                  <ion-card-header text-wrap [textContent]="so.titulo"></ion-card-header>
+                  <ion-card-content>
+                    <div padding class="pt-0 pb-0">
+                      <a ion-button round clear block class="border border-primary"
+                        href="{{getLink(so.url)}}">VISUALIZAR
+                        LISTA</a>
+                    </div>
+                  </ion-card-content>
+                </ion-card>
+                <hr class="bg-white">
+              </div>
+            </div>
+            <!-- end internet -->
+
+
+            <div *ngSwitchCase="'telefonico'" class="mt-3">
+              <div *ngFor="let st of servicosTelefonicos" class="item-segmento">
+                <ion-card>
+                  <ion-card-header text-wrap class="font-13">
+                    <span *ngIf="!!st.regiaoAtendida"
+                      class="color-white font-roboto-bold mr-2">{{st.regiaoAtendida}}:</span>
+                    <a (click)="ligarNumero(st.dddTel + st.numTel)" class="font-roboto-regular color-white">
+                      <ion-icon name="ios-telephone" class="color-yellow"></ion-icon>
+                      {{st.dddTel}} - {{st.numTel}}
+                    </a>
+                  </ion-card-header>
+                </ion-card>
+              </div>
+            </div>
+            <!-- end telefonico -->
+
+          </div>
+          <!-- end segment-content -->
+
+        </div>
+        <!-- end custom-segment -->
+
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-content>

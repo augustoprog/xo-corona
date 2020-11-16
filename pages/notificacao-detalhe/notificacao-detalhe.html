@@ -1,0 +1,28 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+
+    <ion-title>Notificações - PE</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+
+</ion-header>
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="color-default font-roboto-black font-16 text-truncate" [textContent]="notificacao.titulo"></p>
+        <p class="font-10 color-light-gray-3" [textContent]="notificacao.dataCriacao"></p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <p class="text-break" style="word-break: break-word !important;" [innerHtml]="textBlock"></p>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

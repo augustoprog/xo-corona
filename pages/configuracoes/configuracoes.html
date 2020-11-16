@@ -1,0 +1,43 @@
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>Configurações</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+
+  <ion-row>
+    <ion-label class="font-20">Receber Notificações</ion-label>
+    <ion-toggle value="foo" checked="recebeNotifica" [ngModel]="recebeNotifica" (ngModelChange)="changeRecebe($event)">
+    </ion-toggle>
+  </ion-row>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <span class="font-18">TODOS</span>
+      </ion-col>
+      <ion-col col-2>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" [disabled]="!recebeNotifica" name="chkTodos" [(ngModel)]="chkTodos"
+            (change)="changeTodos()" id="chkTodos" />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let tema of temas">
+      <ion-col col-10>
+        <span class="font-18">{{ tema.nome }}</span>
+      </ion-col>
+      <ion-col col-2>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" [disabled]="!recebeNotifica" name="name-{{tema.nome}}" [(ngModel)]="tema.ativo"
+            (change)="changeTema(tema)" id="id-{{tema.nome}}" />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

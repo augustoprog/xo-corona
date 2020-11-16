@@ -1,0 +1,71 @@
+<ion-header class="new-header">
+    <ion-navbar class="text-center">
+        <button ion-button menuToggle>
+            <i class="ion-navicon font-32"></i>
+        </button>
+        <ion-title>DETRAN PE</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+    <ng-container *ngIf="!error; else errorDiv">
+
+
+        <ion-card>
+            <ion-card-content>
+                <div class="font-roboto-black text-center font-15 color-default mb-3">Consulta de Pontos na CNH</div>
+                <div class="font-roboto-black text-center font-14 color-default mb-3">Total de Pontos:</div>
+                <div class="text-center font-roboto-black h-line mb-3">
+                    <span class="pontuacao px-3 py-1" [class.alert]="pontuacaoTotal > 0" [textContent]="pontuacaoTotal"></span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <detran-gray-box class="" label="Registro" [value]="registro"></detran-gray-box>
+                    <img class="img-fluid card-logo" style="height:25px" src="assets/images/id-card@3x.png" alt="cnh" />
+                </div>
+                <div class="font-roboto-black font-14 color-default mb-2" [textContent]="nome"></div>
+                <div class="font-roboto-black font-14 color-default mb-2">Data de Validade:
+                    <span class="font-roboto-regular" [textContent]="validade"></span>
+                </div>
+            </ion-card-content>
+        </ion-card>
+        <ion-card *ngFor="let pontuacao of pontuacoes">
+            <ion-card-content>
+                <div class="h-line mb-3">
+                    <div class="d-flex mb-2 justify-content-between">
+                        <detran-gray-box class="d-flex" label="Placa" [value]="pontuacao?.sPlaca"></detran-gray-box>
+                        <detran-gray-box class="d-flex" label="Auto" [value]="pontuacao?.auto"></detran-gray-box>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center font-roboto-black font-14 color-default">Pontuação:&nbsp;&nbsp;
+                            <span class="pontuacao px-3 py-1 my-0" [class.alert]="pontuacao?.pontuacao > 0"
+                                [textContent]="pontuacao?.pontuacao"></span>
+                        </div>
+                        <div *ngIf="pontuacao?.auto !== '0'" class="d-flex align-items-center font-roboto-regular font-20 color-default">
+                            <i class="ion ion-android-calendar font-32 mr-2"></i>
+                            <span [textContent]="pontuacao?.dInfracao"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="font-roboto-black font-14 color-default mb-2">Artigo:
+                    <span class="font-roboto-regular" [textContent]="pontuacao?.sArtigo"></span>
+                </div>
+                <div class="font-roboto-black font-14 color-default mb-2">Infração:
+                    <span class="font-roboto-regular" [textContent]="pontuacao?.sInfracao"></span>
+                </div>
+                <div class="font-roboto-black font-14 color-default mb-2">Local:
+                    <span class="font-roboto-regular" [textContent]="pontuacao?.sLocalInfracao"></span>
+                </div>
+                <div class="font-roboto-black font-14 color-default mb-2">Órgão Atuante:
+                    <span class="font-roboto-regular" [textContent]="pontuacao?.sOrgaoAutuador"></span>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
+    <ng-template #errorDiv>
+        <ion-card>
+            <ion-card-content>
+                <div class="font-roboto-black text-center font-15 color-default mb-3">Nenhuma informação encontrada.</div>
+            </ion-card-content>
+        </ion-card>
+    </ng-template>
+</ion-content>

@@ -1,0 +1,77 @@
+<!--
+  Generated template for the AlertaCelularInformarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>SDS - Alerta Celular</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <h2 class="font-roboto-bold text-center font-15 color-default mb-4">Informar Alerta</h2>
+      <a href="javascript:;" class="select-custom" (click)="active()" [ngClass]="{'select-active': selectActive}">
+        <span>Orientações</span>
+        <span class="ion-chevron-down" [ngClass]="{'ion-chevron-up': selectActive}"></span>
+      </a>
+      <ng-container *ngIf="selectActive">
+        <ul class="list-orientacao" *ngFor="let item of orientacoes; let i = index;">
+          <li>
+            <span class="orientacao-stap">{{i+1}}</span>
+            <p class="col py-0 mb-0" [innerHtml]="item"></p>
+          </li>
+        </ul>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <h2 class="font-roboto-bold text-center font-15 color-default mb-3">Aparelho Informado</h2>
+      <div class="d-flex flex-wrap align-items-center">
+        <div class="col text-right">
+          <img src="./assets/images/alert2.png" alt=" " class="img-md ml-auto" />
+        </div>
+        <div class="d-flex flex-column col-9">
+          <div class="col-12">
+            <span class="color-default font-20 font-roboto-medium d-block line-normal font-flex" [textContent]="applyMask(celular?.aparelhoIMEI[0].numero)"></span>
+          </div>
+          <div class="col-12">
+            <span class="color-default font-10 font-roboto-regular d-block">{{celular?.marca.label}} - {{celular?.modelo}}</span>
+          </div>
+        </div>
+
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <form (submit)="onSubmit(form)" novalidate #form="ngForm">
+        <h2 class="font-roboto-bold text-center font-15 color-default mb-3" *ngIf="isAlert">Data do Ocorrido</h2>
+
+        <div class="mb-2 p-relative" *ngIf="isAlert">
+          <ion-datetime required #dateModel="ngModel" [class.input-invalid]="isInvalidModel(form,dateModel) && isAlert" class="form-control"
+            placeholder="*Selecione a Data" displayFormat="DD/MM/YYYY" [(ngModel)]="dataOcorrido" name="dataOcorrido" monthNames="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+            monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez" dayNames="Domingo, Segunda-feira, Ter\u00e7a-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sabado"
+            dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sab" doneText="OK" cancelText="Cancelar"></ion-datetime>
+        </div>
+        <hr *ngIf="isAlert">
+        <button ion-button round color="primary" type="submit" block>{{btnLabel}}</button>
+
+        <a href="javascript:;" (click)="onClose()" class="button btn-trans btn-block border border-primary">
+          <span class="button-inner">DESISTIR</span>
+        </a>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

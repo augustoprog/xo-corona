@@ -1,0 +1,52 @@
+<!--
+  Generated template for the MenuServico page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>Lista de Serviços</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+
+  <div padding class="bg-multiple-default py-0">
+    <div class="searchbar-custom shadow-default">
+      <ion-searchbar
+        (ionInput)="getItems($event)"
+        placeholder="Buscar"
+      ></ion-searchbar>
+    </div>
+    <!-- end searchbar -->
+  </div>
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content sem-line-footer bg-avatar-white">
+  <ion-list class="list-service">
+    <ng-container *ngFor="let item of items">
+      <ion-item *ngIf="item.fl_ativo" (click)="openPage(item.url)">
+        <ion-thumbnail class="col-3">
+          <img src="assets/logos/{{ item.logo }}" class="img-fluid" />
+        </ion-thumbnail>
+        <div class="col-9">
+          <h2
+            [textContent]="item.titulo"
+            class="font-roboto-black m-0 p-0 color-default"
+          ></h2>
+          <span
+            [textContent]="item.descricao"
+            class="badge badge-primary bg-light-blue font-10 font-roboto-regular"
+          ></span>
+        </div>
+      </ion-item>
+    </ng-container>
+    <!-- end ion-item -->
+  </ion-list>
+  <!-- end ion-list -->
+</ion-content>
+<!-- end ion-content -->

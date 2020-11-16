@@ -1,0 +1,188 @@
+<!--
+  Generated template for the AgendamentoStepFivePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card class="mb-3">
+    <ion-card-content>
+      <step-default [active]="5"></step-default>
+      <form #form="ngForm" novalidate (submit)="stepOneSubmit(form)">
+        <p
+          class="mb-2 font-14 font-roboto-regular color-default text-left line-height-default "
+        >
+          Escolha o local, data e hora para o atendimento
+        </p>
+        <select-box
+          required
+          class="form-control mb-3"
+          interface="alert"
+          name="municipio"
+          placeholder="*Município"
+          [(ngModel)]="selectedMunicipio"
+          [selectOptions]="municipios"
+          #modalMunicipio="ngModel"
+          [class.input-invalid]="
+            (form.submitted || modalMunicipio.touched) && modalMunicipio.invalid
+          "
+          (changeValue)="changeMunicipio($event)"
+        ></select-box>
+        <!-- end select-box municipios -->
+
+        <select-box
+          required
+          class="form-control"
+          interface="alert"
+          name="unidades"
+          placeholder="*Unidade"
+          [(ngModel)]="selectedUnidade"
+          [selectOptions]="unidades"
+          #modalUnidade="ngModel"
+          [class.input-invalid]="
+            (form.submitted || modalUnidade.touched) && modalUnidade.invalid
+          "
+          (changeValue)="changeUnidade($event)"
+        ></select-box>
+        <!-- end select-box unidades -->
+      </form>
+      <!-- end form -->
+      <div *ngIf="selectedUnidade">
+        <h3
+          class="font-roboto-black font-18 color-default splitter pt-3 my-3 text-center"
+        >
+          Datas e Horários Disponíveis
+        </h3>
+
+        <p
+          class="mb-2 font-14 font-roboto-regular color-default text-left line-height-default "
+        >
+          *Selecione uma data e em seguida o horário disponível.
+        </p>
+        <ion-calendar
+          [(ngModel)]="date"
+          (onChange)="onChange($event)"
+          [type]="type"
+          [format]="'YYYY-MM-DD'"
+          class="my-calendar"
+          [options]="options"
+        >
+        </ion-calendar>
+
+        <div class="splitter pt-4 my-3" *ngIf="selectedHorarios?.length">
+          <h3 class="font-roboto-black font-18 color-default mb-2 text-center">
+            Horário(s) Selecionado(s)
+          </h3>
+          <!-- end h3 -->
+
+          <ul class="flex-column mb-3 px-0">
+            <li
+              class="d-flex flex-1 pb-1 mb-1 brd-b-gray align-items-center"
+              *ngFor="let i of selectedHorarios"
+            >
+              <span
+                class="ion-android-time color-limon-green mr-3 font-24 line-height-24"
+              ></span>
+              <span
+                class="font-roboto-black font-18 color-limon-green"
+                [textContent]="formatHour(i.horario)"
+              >
+              </span>
+              <span
+                class="ion-android-checkbox-outline color-dark-green font-28 ml-auto"
+              ></span>
+            </li>
+            <!-- <li class="d-flex flex-1 pb-1 mb-1 brd-b-gray">
+              <span
+                class="ion-android-time color-limon-green mr-3 font-24 line-height-24"
+              ></span>
+              <span class="font-roboto-black font-18 color-limon-green"
+                >08:00:00
+              </span>
+              <span
+                class="ion-android-checkbox-outline color-dark-green font-28 ml-auto"
+              ></span>
+            </li>
+            <li class="d-flex flex-1 pb-1 mb-1 brd-b-gray">
+              <span
+                class="ion-android-time color-limon-green mr-3 font-24 line-height-24"
+              ></span>
+              <span class="font-roboto-black font-18 color-limon-green"
+                >08:00:00
+              </span>
+              <span
+                class="ion-android-checkbox-outline color-dark-green font-28 ml-auto"
+              ></span>
+            </li> -->
+          </ul>
+          <!-- end ul -->
+
+          <button
+            type="button"
+            ion-button
+            round
+            class="border border-primary"
+            clear
+            block
+            (click)="openModalMaisHorarios(date)"
+          >
+            <span
+              class="ion-android-time color-blue mr-2 font-28 line-height-24"
+            ></span
+            >MAIS HORÁRIOS
+          </button>
+
+          <div class="d-flex my-3 align-items-center">
+            <span class="ion ion-ios-location color-blue font-12 mr-2"></span>
+            <span
+              class="color-default font-12 font-roboto-regular"
+              [textContent]="
+                formatUnidadeAtendimento(
+                  this.agendamentoProvider.getResultado().horarioAgenda
+                    .servicoUnidade.unidadeAtendimento
+                )
+              "
+            ></span>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <button
+            type="button"
+            ion-button
+            color="primary"
+            block
+            (click)="voltar()"
+            class="mr-1"
+          >
+            <span class="button-inner">Voltar</span>
+          </button>
+          <button
+            (click)="reservar()"
+            ion-button
+            color="primary"
+            block
+            class="text-uppercase ml-1"
+          >
+            AVANÇAR
+          </button>
+        </div>
+        <!-- end div botoes -->
+      </div>
+      <!-- end div -->
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card add dependente -->
+</ion-content>
+<!-- end ion-content -->

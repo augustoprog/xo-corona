@@ -1,0 +1,19 @@
+page-servico-mapa {
+    .transparente {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .scroll {
+        height: 100%;
+    }
+
+    .map-wrapper {
+        .scroll-content {
+            padding-bottom: 5px;
+        }
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+}

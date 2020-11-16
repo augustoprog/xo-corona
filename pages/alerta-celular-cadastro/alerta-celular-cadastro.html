@@ -1,0 +1,99 @@
+<!--
+  Generated template for the AlertaCelularCadastroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>SDS - Alerta Celular</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card>
+    <ion-card-content>
+      <h2 class="font-roboto-bold text-center font-15 color-default mb-4">Cadastro do Aparelho</h2>
+      <form #form="ngForm" novalidate (submit)="cadastrarCelular(form)">
+        <a href="#" (click)="usarDadosLocais()" ion-button color="primary" class="mb-3 text-uppercase" *ngIf="!isIOs" block>CADASTRAR ESSE APARELHO</a>
+
+        <div class="mb-2 row">
+          <div class="col-12 d-flex align-items-center">
+            <span class="font-roboto-regular color-default font-12 mr-1">
+              Para descobrir o
+              <strong class="font-weight-bold">IMEI</strong> do seu aparelho, digite:
+            </span>
+            <span class="fake-input font-weight-bold brd-orange-2">
+              <span class="font-18 color-default">*#06#</span>
+            </span>
+          </div>
+        </div>
+
+        <select-box required class="form-control mb-2" interface="alert" name="marca" placeholder="*Marca" [(ngModel)]="selectedMarca"
+          [selectOptions]="marcas" #marcac="ngModel" [class.input-invalid]="(form.submitted || marcac.touched) && marcac.invalid"></select-box>
+
+        <div class="mb-2">
+          <input type="text" [(ngModel)]="celular.modelo" required name="modelo" #modelo="ngModel" class="form-control" placeholder="*Modelo"
+            autocomplete="off" [class.input-invalid]="(form.submitted || modelo.touched) && modelo.invalid" />
+        </div>
+
+        <div class="mb-3">
+          <input type="text" [(ngModel)]="celular.serial" name="serial" #serial="ngModel" class="form-control" placeholder="Serial"
+            autocomplete="off" />
+        </div>
+
+        <h2 class="font-roboto-bold text-center font-15 color-default mb-2">Cadastro de IMEI</h2>
+        <p class="font-roboto-regular font-14 color-default mb-2">*O seu aparelho possui a quantidade de IMEIs igual a quantidade de entradas para chip.</p>
+
+        <ul class="list-chip mb-3">
+          <li class="font-roboto-bold font-12 color-default mr-4">
+            <span class="chip brd-blue" (click)="selectChipOne()" [ngClass]="{'chip-active': chipActiveOne}">
+              <span class="ion-document-text font-32"></span>
+            </span>
+            1 Chip
+          </li>
+          <li class="font-roboto-bold font-12 color-default">
+            <span class="chip chip-group" (click)="selectChipTwo()" [ngClass]="{'chip-active': !chipActiveOne}">
+              <span class="ion-document-text font-24"></span>
+              <span class="ion-document-text font-24"></span>
+            </span>
+            2 Chip
+          </li>
+        </ul>
+
+
+        <ng-container *ngFor="let item of celular.aparelhoIMEI; let i = index; let first = first;">
+          <hr *ngIf="!first">
+          <select-box required class="form-control mb-2" interface="alert" name="operadora{{i}}" placeholder="Selecione a operadora"
+            [(ngModel)]="selectedOperadora[i]" [selectOptions]="operadoras" #opera="ngModel" [class.input-invalid]="(form.submitted || opera.touched) && opera.invalid"></select-box>
+
+          <div class="mb-2">
+            <input type="tel" [(ngModel)]="celular.aparelhoIMEI[i].numero" [textMask]="{mask:tel9Mask, guide: false}"
+              (blur)="celular.aparelhoIMEI[i].numero = fixMask(tel9Mask, celular.aparelhoIMEI[i].numero)" required
+              name="serial{{i}}" #phone="ngModel" class="form-control" placeholder="*Telefone" autocomplete="off"
+              [class.input-invalid]="(form.submitted || phone.touched) && phone.invalid"
+            />
+          </div>
+
+          <div class="mb-3">
+            <input type="tel" required [(ngModel)]="celular.aparelhoIMEI[i].imei" name="imeiNumber{{i}}" #imei="ngModel" class="form-control"
+              placeholder="*IMEI" autocomplete="off" [class.input-invalid]="(form.submitted || imei.touched) && imei.invalid"
+            />
+          </div>
+        </ng-container>
+
+        <button type="submit" ion-button color="primary" block class="mb-2 text-uppercase">{{btnLabel}}</button>
+
+        <a href="javascript:;" class="button btn-trans btn-block border border-primary" (click)="cancelar()">
+          <span class="button-inner">Cancelar</span>
+        </a>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

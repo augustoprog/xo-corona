@@ -1,0 +1,70 @@
+<!--
+  Generated template for the MenuRgDigitalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>RG Digital</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card class="mb-3">
+    <ion-card-content (click)="scanearQrCode()" class="py-2">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="font-roboto-bold font-18 color-default mb-0">Adicionar RG Digital</h2>
+        <i class="ion-plus-circled font-48 color-blue icon-plus-shadow"></i>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <!-- end add rg digital-->
+
+  <div class="mb-5">
+    <h2 class="font-roboto-black font-18 text-center my-3 color-default">RG Digital Cadastrado</h2>
+    <div class="font-14 font-roboto-regular mb-3 text-center">
+      <em class="color-default">Chave de Segurança do RG Digital.</em>
+    </div>
+
+    <ion-card *ngFor="let item of rgs">
+      <ion-card-content class="p-2">
+        <div class="font-roboto-black font-15 color-default mb-0 text-truncate d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center bg-light-gray round-5 p-2 flex-1">
+            <img class="img-fluid card-logo" style="height:25px; width: 35px" src="assets/images/id-card-gray.png" alt="RG" />
+            <div class="font-roboto-medium font-15 font-flex color-default ml-2">
+              <span class="font-roboto-bold">RG</span>
+              <span>{{ _applyRgMask(item.rg.numero) }}</span>
+            </div>
+          </div>
+          <div class="d-flex flex-1 align-items-center justify-content-around">
+            <!-- <img class="img-action" src="assets/images/edit@2x.png" (click)="editar()" /> -->
+            <img class="img-action ml-3" src="assets/images/delete@2x.png" (click)="confirmDelete(item)" />
+            <img class="img-action" (click)="pin(item)" src="assets/icon/key.svg" />
+          </div>
+        </div>
+        <!-- <div>
+          <span class="font-12 font-roboto-bold color-default">Org:</span>
+          <span class="font-12 font-roboto-regular color-default">SSP/PE</span>
+          <span class="font-12 font-roboto-bold color-default">Ex:</span>
+          <span class="font-12 font-roboto-regular color-default">20/10/2016</span>
+        </div> -->
+      </ion-card-content>
+      <!-- end ion-card-content -->
+    </ion-card>
+    <!-- end ion-card -->
+
+    <!-- <ng-template #divSemLinhas> -->
+    <div class="font-14 font-roboto-regular mb-3 text-center" *ngIf="!rgs.length">
+      <em class="color-default">Nenhuma RG Digital cadastrado até o momento.</em>
+    </div>
+    <!-- </ng-template> -->
+  </div>
+
+</ion-content>

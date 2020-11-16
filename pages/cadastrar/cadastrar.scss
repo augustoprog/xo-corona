@@ -1,0 +1,59 @@
+@import "../../theme/layout";
+@import "../../theme/form";
+@import "../../theme/var";
+
+page-cadastrar {
+  .item {
+    background-color: transparent;
+    padding: 0;
+    width: 100%;
+    .item-inner {
+      padding: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
+  ion-input {
+    padding: 0 !important;
+    input {
+      padding: 0.8rem;
+      margin: 0;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+  ion-input + ion-input {
+    display: none !important;
+  }
+
+  ion-datetime.input-invalid button {
+    border: none !important;
+  }
+
+  ion-item {
+    position: initial !important;
+    .input-wrapper {
+      position: relative;
+      ion-label {
+        margin-right: 0;
+      }
+    }
+  }
+  .input-group {
+    .form-control {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      opacity: 1 !important;
+    }
+    .item-inner {
+      .input-group-append {
+        margin: 0;
+        height: 49px;
+      }
+      .input-group-text {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}

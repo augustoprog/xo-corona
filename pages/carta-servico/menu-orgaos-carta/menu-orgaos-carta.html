@@ -1,0 +1,97 @@
+<!--
+  Generated template for the MenuServico page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>Carta de Serviços</ion-title>
+  </ion-navbar>
+  <div padding class="bg-multiple-default py-0">
+    <div class="searchbar-custom shadow-default">
+      <ion-searchbar placeholder="Buscar" (ionInput)="onSearch()" [(ngModel)]="searchText"></ion-searchbar>
+    </div>
+    <!-- end searchbar -->
+  </div>
+</ion-header>
+
+
+<ion-content class="new-content sem-line-footer bg-avatar-white">
+  <!-- <div class="font-roboto-black font-18 text-center my-3 color-default">Serviços em Destaque</div> -->
+
+  <!-- <ion-list>
+    <ng-container *ngFor="let orgao of orgaos">
+      <ion-item text-wrap #parentCard *ngIf="(servicos[orgao.id] | filter:searchText:'nome').length > 0">
+        <ion-card class="card-orgao no-shadow ">
+          <ion-card-content class="bg-blue pb-1 pt-3 ">
+            <h2 class="mb-1 font-roboto-bold ">
+              {{orgao.sigla}}
+            </h2>
+            <h3 class="mb-1 font-12 font-roboto-medium text-truncate ">{{orgao.nome}}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+      <ion-item class="item-servico" (click)="openPage(servico.id)" *ngFor="let servico of servicos[orgao.id] | filter:searchText: 'nome'">
+        <ion-card class="card-servico ">
+          <ion-card-content class="py-2 ">
+            <h2 class="mb-1 font-roboto-bold text-truncate color-default">
+              {{servico.nome}}
+            </h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ng-container>
+
+  </ion-list> -->
+
+  <ion-list class="list-custom mt-4" [virtualScroll]="orgServ">
+    <ion-item text-wrap *virtualItem="let item">
+      <ion-card class="card-orgao no-shadow " *ngIf="!item.id">
+        <ion-card-content class="bg-blue pb-1 pt-3 ">
+          <h2 class="mb-1 font-roboto-bold ">
+            {{item.sigla}}
+          </h2>
+          <h3 class="mb-1 font-12 font-roboto-medium text-truncate ">{{item.nome}}</h3>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="card-servico item-servico" (click)="openPage(item.id)" *ngIf="item.id">
+        <ion-card-content class="py-2 ">
+          <h2 class="mb-1 font-roboto-bold text-truncate color-default">
+            {{item.nome}}
+          </h2>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-list>
+      <ng-container *ngFor="let orgao of orgaos">
+        <ion-item text-wrap #parentCard *ngIf="(servicos[orgao.id] | filter:searchText:'nome').length > 0">
+          <ion-card class="card-orgao no-shadow ">
+            <ion-card-content class="bg-blue pb-1 pt-3 ">
+              <h2 class="mb-1 font-roboto-bold ">
+                {{orgao.sigla}}
+              </h2>
+              <h3 class="mb-1 font-12 font-roboto-medium text-truncate ">{{orgao.nome}}</h3>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+        <ion-item class="item-servico" (click)="openPage(servico.id)" *ngFor="let servico of servicos[orgao.id] | filter:searchText: 'nome'">
+          <ion-card class="card-servico ">
+            <ion-card-content class="py-2 ">
+              <h2 class="mb-1 font-roboto-bold text-truncate color-default">
+                {{servico.nome}}
+              </h2>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ng-container>
+  
+    </ion-list> -->
+
+</ion-content>

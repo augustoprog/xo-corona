@@ -1,0 +1,351 @@
+<!--
+  Generated template for the UsuarioCadastro page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<!--
+  Generated template for the Profile page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header class="new-header">
+  <ion-navbar>
+    <ion-title>Meus Dados</ion-title>
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+<ion-content padding class="new-content bg-multiple-2">
+  <ion-card>
+    <ion-card-content class="">
+      <div class="text-center">
+        <button class="m-0 p-0 redondo" (click)="abrirFoto()">
+          <img src="{{photoUsuario}}">
+        </button>
+      </div>
+      <form action="" novalidate #form="ngForm">
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">*Nome:</label>
+          <input type="text" [(ngModel)]="user.nome" name="nome" class="form-control" placeholder="Nome Completo" autocomplete="off"
+            required [customMaxLength]="60" #nome="ngModel" [class.input-invalid]="nome.invalid && form.submitted" />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">*Nome da Mãe:</label>
+          <input type="text" required [customMaxLength]="100" #nomeMae="ngModel" [(ngModel)]="user.nomeMae" name="nomeMae" class="form-control" [class.input-invalid]="nomeMae.invalid && form.submitted"
+            placeholder="Nome da Mãe" autocomplete="off" />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Nome do Pai:</label>
+          <input type="text" [(ngModel)]="user.nomePai" name="nomePai" [customMaxLength]="100" class="form-control" placeholder="Nome do Pai" autocomplete="off"
+          />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">*CPF:</label>
+          <input type="tel" [textMask]="{mask: mask, guide: false}" (blur)="user.cpf = fixMask(mask, user.cpf)"
+            [(ngModel)]="user.cpf" name="cpf" class="form-control" placeholder="CPF" autocomplete="off"
+            (focus)="fixScroll()"
+            required #cpf="ngModel" [class.input-invalid]="cpf.invalid && form.submitted" />
+        </div>
+
+        <div class="mb-2 p-relative">
+          <label class="color-default font-14 font-roboto-medium">*Data de Nascimento:</label>
+          <ion-datetime [class.input-invalid]="isInvalidModel(form,dateModel)" #dateModel="ngModel" class="form-control" placeholder="*Data de Nascimento"
+            displayFormat="DD/MM/YYYY" [(ngModel)]="dataNascimento" name="dataNascimento" monthNames="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+            monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez" dayNames="Domingo, Segunda-feira, Ter\u00e7a-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sabado"
+            dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sab" doneText="OK" cancelText="Cancelar"></ion-datetime>
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">*E-mail:</label>
+          <input type="text" [(ngModel)]="user.email" disabled name="email" class="form-control" placeholder="E-mail" autocomplete="off"
+            (focus)="fixScroll()"
+            required [customMaxLength]="50" #email="ngModel" [class.input-invalid]="email.invalid && form.submitted" />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">E-mail Alternativo:</label>
+          <input type="text" #emailAlt="ngModel" [(ngModel)]="user.emailAlternativo" name="emailAlternativo" [customMaxLength]="60"
+          (focus)="fixScroll()" class="form-control" placeholder="E-mail Alternativo"
+            autocomplete="off" />
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">*RG:</label>
+          <input type="tel" [(ngModel)]="user.rg" name="rg" #rg="ngModel" class="form-control" required maxlength="20" placeholder="RG" autocomplete="off"
+            (focus)="fixScroll()" [class.input-invalid]="rg.invalid && form.submitted" />
+        </div>
+
+        <div class="d-flex">
+          <div class="mb-2 mr-1 flex-1">
+            <label class="color-default font-14 font-roboto-medium">*Org Expedidor:</label>
+            <input required type="text" [(ngModel)]="user.orgaoExpedidor" name="orgaoExpedidor" [customMaxLength]="20" class="form-control" placeholder="Órgão Expedidor"
+              autocomplete="off" #oexp="ngModel" [class.input-invalid]="oexp.invalid && form.submitted" (focus)="fixScroll()"/>
+          </div>
+          <div class="mb-2 ml-1 flex-1">
+            <label class="color-default font-14 font-roboto-medium">UF:</label>
+            <select-box required placeholder="UF" class="form-control" name="ufRG" [(ngModel)]="user.ufRG" [selectOptions]="UFs" #ufRg="ngModel"
+              [class.input-invalid]="ufRg.invalid && form.submitted"></select-box>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Sexo:</label>
+          <div class=" cursor-pointer" [ngClass]="{'input-group': (user.sexo != null && user.sexo != '' )}">
+            <select-box placeholder="Sexo" [ngClass]="{'remove-item': (user.sexo != null && user.sexo != '' )}" [(ngModel)]="user.sexo"
+              name="sexo" class="form-control" [selectOptions]="sexo_"></select-box>
+            <div class="input-group-append" *ngIf="user.sexo != null && user.sexo != ''">
+              <span class="ion-ios-close-empty color-default input-group-text ion-flex" (click)="removeSexo($event)"></span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <ion-item>
+          <ion-label stacked>Sexo</ion-label>
+          <ion-select [(ngModel)]="sexo" name="sexo">
+            <ion-option value="F">Feminino</ion-option>
+            <ion-option value="M">Masculino</ion-option>
+          </ion-select>
+        </ion-item> -->
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">UF Nascimento:</label>
+          <select-box placeholder="UF Nascimento" [(ngModel)]="user.naturalidadeUf" name="naturalidadeUf" class="form-control" [selectOptions]="UFs"
+            (changeValue)="carregaMunicipios($event)"></select-box>
+        </div>
+
+        <!-- <ion-item>
+          <ion-label stacked>UF Nascimento</ion-label>
+          <ion-select [(ngModel)]="naturalidadeUf" name="naturalidadeUf" (ionChange)="carregaMunicipios($event)">
+            <ion-option *ngFor="let uf of uFs" [value]="uf.value">
+              {{uf.value}}
+            </ion-option>
+            <ion-option value="NA">Outros - Fora do Brasil</ion-option>
+          </ion-select>
+        </ion-item> -->
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Municipio Nascimento:</label>
+          <div class="input-group cursor-pointer" (click)="openModalMunicipios(user.naturalidadeUf)">
+            <span class="form-control text-truncate" *ngIf="!user?.naturalidadeMunicipio">Escolher Município</span>
+            <span placeholder="Escolher Município" *ngIf="user?.naturalidadeMunicipio" class="form-control text-truncate" [textContent]="user?.naturalidadeMunicipio"
+              name="naturalidadeMunicipio"></span>
+            <div class="input-group-append">
+              <span class="ion-ios-close-empty color-default input-group-text ion-flex" (click)="removeMunicipio($event);$event.stopPropagation()"
+                *ngIf="user?.naturalidadeMunicipio"></span>
+              <i class="ion-android-search font-white color-default ion-flex input-group-text" *ngIf="!user?.naturalidadeMunicipio"></i>
+            </div>
+          </div>
+          <!-- <select-box placeholder="Municipio Nascimento" [disabled]="!hasMunicipios" [(ngModel)]="user.naturalidadeMunicipio" name="naturalidadeMunicipio"
+            class="form-control" [selectOptions]="municipios"></select-box> -->
+        </div>
+        <!-- <ion-item>
+          <ion-label stacked>Municipio Nascimento</ion-label>
+          <ion-select [(ngModel)]="naturalidadeMunicipio" name="naturalidadeMunicipio">
+            <ion-option *ngFor="let municipio of municipios" [value]="municipio.nome">
+              {{municipio.nome}}
+            </ion-option>
+          </ion-select>
+        </ion-item> -->
+
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Cor / Raça:</label>
+
+          <div class=" cursor-pointer" [ngClass]="{'input-group': (corRaca != null && corRaca != '' )}">
+
+            <select-box [ngClass]="{'remove-item': corRaca != null && corRaca != ''}" placeholder="Cor / Raça" [(ngModel)]="corRaca"
+              name="corRaca" class="form-control" [selectOptions]="coresRacas"></select-box>
+            <div class="input-group-append" *ngIf="corRaca != null && corRaca != ''">
+              <span class="ion-ios-close-empty color-default input-group-text ion-flex" (click)="removeCorRaca($event)"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ion-item>
+          <ion-label stacked>Cor / Raça</ion-label>
+          <ion-select [(ngModel)]="corRaca" name="corRaca">
+
+            <ion-option value="" ng-selected="true">Selecione...</ion-option>
+            <ion-option *ngFor="let corRaca of coresRacas" [value]="corRaca.id">
+              {{corRaca.titulo}}
+            </ion-option>
+
+          </ion-select>
+        </ion-item> -->
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Ocupação:</label>
+          <div class="input-group cursor-pointer" (click)="openModal()">
+            <span class="form-control text-truncate" *ngIf="!user.ocupacao?.titulo">Escolher Ocupação</span>
+
+            <span placeholder="Escolher Ocupação" *ngIf="user.ocupacao?.titulo" class="form-control text-truncate" [textContent]="user.ocupacao?.titulo"
+              name="ocupacao"></span>
+            <div class="input-group-append">
+              <span class="ion-ios-close-empty color-default input-group-text ion-flex" (click)="removeOcupacao($event);$event.stopPropagation()"
+                *ngIf="user.ocupacao?.titulo"></span>
+              <i class="ion-android-search font-white color-default ion-flex input-group-text" *ngIf="!user.ocupacao?.titulo"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ion-item text-wrap>
+          {{ ocupacaoEscolhida.titulo }}
+          <br>
+          <button ion-button (click)="openModal()">Escolher Ocupação</button>
+        </ion-item> -->
+
+        <div class="d-flex flex-column mb-2">
+          <label class="color-default font-14 font-roboto-medium">Escolaridade:</label>
+          <div class=" cursor-pointer" [ngClass]="{'input-group': (nivelInstrucao != null && nivelInstrucao != '' )}">
+
+            <select-box placeholder="Escolaridade" [ngClass]="{'remove-item': nivelInstrucao != null && nivelInstrucao != ''}" [(ngModel)]="nivelInstrucao"
+              name="nivelInstrucaoEscolhida" class="form-control" [selectOptions]="niveisInstrucao"></select-box>
+            <div class="input-group-append" *ngIf="nivelInstrucao != null && nivelInstrucao != ''">
+              <span class="ion-ios-close-empty color-default input-group-text ion-flex" (click)="nivelInstrucao = null"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ion-item text-wrap>
+          <ion-label stacked>Escolaridade</ion-label>
+          <ion-select [(ngModel)]="nivelInstrucaoEscolhida" name="nivelInstrucaoEscolhida">
+
+            <ion-option value="" ng-selected="true">Selecione...</ion-option>
+            <ion-option *ngFor="let nivelInstrucao of niveisInstrucao" [value]="nivelInstrucao.id">
+              {{nivelInstrucao.titulo}}
+            </ion-option>
+
+
+          </ion-select>
+        </ion-item> -->
+
+
+        <div class="input-group mb-2">
+          <button ion-button round color="primary" block (click)="salvarDadosPessoais(form)" ([attr.disabled])="offline" ([class.button-disabled])="offline">Atualizar Dados Pessoais</button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
+
+
+
+
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>Meus Dados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>CPF</ion-label>
+      <ion-input type="number" [(ngModel)]="cpf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Data Nacimento</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="YYYY MMMM DD" max="2017-01-01" [(ngModel)]="dataNascimento" monthNames="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+        monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez" dayNames="Domingo, Segunda-feira, Ter\u00e7a-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sabado"
+        dayShortNames="Dom, Seg, Ter, Qua, Qui, Sex, Sab" doneText="OK" cancelText="Cancelar"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Nome da Mãe</ion-label>
+      <ion-input type="text" [(ngModel)]="nomeMae"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Sexo</ion-label>
+      <ion-select [(ngModel)]="sexo">
+        <ion-option value="F">Feminino</ion-option>
+        <ion-option value="M">Masculino</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>UF Nascimento</ion-label>
+      <ion-select [(ngModel)]="naturalidadeUf" (ionChange)="carregaMunicipios($event)">
+        <ion-option *ngFor="let uf of uFs" [value]="uf.value">
+          {{uf.value}}
+        </ion-option>
+        <ion-option value="NA">Outros - Fora do Brasil</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Municipio Nascimento</ion-label>
+      <ion-select [(ngModel)]="naturalidadeMunicipio">
+        <ion-option *ngFor="let municipio of municipios" [value]="municipio.nome">
+          {{municipio.nome}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Cor / Raça</ion-label>
+      <ion-select [(ngModel)]="corRaca">
+
+        <!<ion-option value="" ng-selected="true">Selecione...</ion-option>>
+        <ion-option *ngFor="let corRaca of coresRacas" [value]="corRaca.id">
+          {{corRaca.titulo}}
+        </ion-option>
+
+      </ion-select>
+    </ion-item>
+
+    <ion-item text-wrap>
+      {{ ocupacaoEscolhida.titulo }}
+      <br>
+      <button ion-button (click)="openModal()">Escolher Ocupação</button>
+    </ion-item>
+
+    <ion-item text-wrap>
+      <ion-label stacked>Escolaridade</ion-label>
+      <ion-select [(ngModel)]="nivelInstrucaoEscolhida">
+
+        <!<ion-option value="" ng-selected="true">Selecione...</ion-option>>
+        <ion-option *ngFor="let nivelInstrucao of niveisInstrucao" [value]="nivelInstrucao.id">
+          {{nivelInstrucao.titulo}}
+        </ion-option>
+
+
+      </ion-select>
+    </ion-item>
+
+
+  </ion-list>
+
+
+  <div padding>
+    <button ion-button color="secondary" block (click)="salvarDadosPessoais()">Salvar</button>
+  </div>
+
+
+</ion-content> -->

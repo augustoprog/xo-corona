@@ -1,0 +1,32 @@
+.md {
+  page-modal-horarios {
+    .scroll-content {
+      top: -1px;
+    }
+  }
+}
+.list-horarios {
+  .item-block {
+    min-height: auto;
+    &:first-child {
+      border-top: none !important;
+    }
+    .label {
+      margin: 0;
+    }
+  }
+
+  .brd-b-gray {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.16);
+  }
+}
+.btn-position-bottom {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: $color-white;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 100%;
+  z-index: 1;
+}

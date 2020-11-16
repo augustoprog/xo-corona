@@ -1,0 +1,20 @@
+<ion-header class="new-header">
+    <ion-navbar>
+        <ion-buttons start *ngIf="viewCtrl.isOverlay">
+            <button ion-button icon-only (click)="closeModal()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons end>
+            <ion-spinner name="crescent" *ngIf="carregando"></ion-spinner>
+            <button ion-button icon-only *ngIf="!!acaoToolbar" (click)="onClickAcaoToolbar()">
+                <ion-icon [name]="acaoToolbar.icone"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="new-content bg-footer bg-avatar-white map-wrapper">
+    <div #map id="map" class="transparente"></div>
+</ion-content>

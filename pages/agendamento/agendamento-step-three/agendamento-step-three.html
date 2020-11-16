@@ -1,0 +1,131 @@
+<!--
+  Generated template for the AgendamentoStepThreePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle><i class="ion-navicon font-32"></i></button>
+    <ion-title> Agendamento </ion-title>
+    <!-- end ion-title -->
+  </ion-navbar>
+  <!-- end ion-navbar -->
+</ion-header>
+<!-- end ion-header -->
+
+<ion-content padding class="new-content bg-avatar-white bg-multiple-2">
+  <ion-card class="mb-3">
+    <ion-card-content>
+      <step-default [active]="3"></step-default>
+      <!-- end step-default -->
+      <h3 class="font-roboto-black font-18 color-default mb-2 text-center">
+        Adicionar Dependentes
+      </h3>
+      <div
+        class="mb-4 line-height-default font-14 font-roboto-regular color-default"
+      >
+        *Só serão permitidos dependentes entre 18 e 60 anos ou portadores de
+        deficiência.
+      </div>
+
+      <div class="d-flex align-items-center">
+        <a
+          href="javascript:;"
+          (click)="voltar()"
+          class="mr-1 text-uppercase disable-hover button button-md button-default button-default-md button-block button-block-md button-md-primary"
+        >
+          <span class="button-inner">Voltar</span>
+        </a>
+
+        <a
+          href="javascript:;"
+          (click)="avancar()"
+          class="mr-1 text-uppercase disable-hover button button-md button-default button-default-md button-block button-block-md button-md-primary"
+        >
+          <span class="button-inner">AVANÇAR</span>
+        </a>
+      </div>
+      <!-- end d-flex -->
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card -->
+
+  <ion-card class="mb-3">
+    <ion-card-content (click)="showModalDependente()" class="py-1">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="font-roboto-bold font-18 color-default mb-0">
+          Adicionar Dependentes
+        </h2>
+        <i class="ion-plus-circled font-48 color-blue icon-plus-shadow"></i>
+      </div>
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card add dependente -->
+
+  <ion-card class="mb-3" *ngIf="dependentes.length">
+    <ion-card-content>
+      <h3 class="font-roboto-black font-18 color-default mb-3 text-center">
+        Dependentes
+      </h3>
+
+      <div class="mb-3" *ngFor="let dependente of dependentes">
+        <div class="d-flex my-2">
+          <div
+            class="col text-truncate d-flex align-items-center bg-light-gray round-5 px-2 py-1 flex-1"
+          >
+            <img
+              class="mr-2"
+              style="height:25px; width: 35px"
+              src="assets/images/id-card.svg"
+              alt="Card"
+            />
+            <div
+              class="col text-truncate font-roboto-medium font-15 font-flex color-default"
+            >
+              <span
+                class="font-roboto-bold"
+                [textContent]="dependente.nomeCompleto"
+              ></span>
+            </div>
+            <div class="d-flex flex-1 justify-content-end">
+              <img
+                (click)="edit(dependente)"
+                class="img-action"
+                src="assets/images/edit@2x.png"
+              />
+              <img
+                (click)="remove(dependente)"
+                class="img-action ml-2"
+                src="assets/images/delete@2x.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="font-15 font-flex color-default">
+          <span class="font-roboto-bold">CPF:</span>
+          <span
+            class="font-roboto-regular"
+            [textContent]="applyMask(dependente.cpf, cpfMask)"
+          ></span>
+        </div>
+        <div class="font-15 font-flex color-default">
+          <span class="font-roboto-bold">Data de Nascimento:</span>
+          <ion-datetime
+            disabled
+            displayFormat="DD/MM/YYYY"
+            [(ngModel)]="dependente.nascimento"
+            class="p-0 d-inline"
+          ></ion-datetime>
+        </div>
+        <!-- edn div -->
+      </div>
+      <!-- end box dependete -->
+    </ion-card-content>
+    <!-- end ion-card-content -->
+  </ion-card>
+  <!-- end ion-card add dependente -->
+</ion-content>
+<!-- end ion-content -->

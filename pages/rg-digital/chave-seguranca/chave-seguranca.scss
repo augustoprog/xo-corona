@@ -1,0 +1,16 @@
+page-chave-seguranca {
+  #countdown {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+}
+.img-in-botao {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+@media (max-width: 320px) {
+  .img-in-botao {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}

@@ -1,0 +1,22 @@
+<!--
+  Generated template for the Covid19AtendeEmCasaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="new-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <i class="ion-navicon font-32"></i>
+    </button>
+    <ion-title>ATENDE EM CASA</ion-title>
+    <!-- end title -->
+  </ion-navbar>
+  <!-- end ion-nav-bar -->
+</ion-header>
+
+
+<ion-content>
+  <iframe [src]="urlAtendeEmCasa" width="100%" height="100%" 
+    name="frameAtende" frameborder="0" scrolling="yes" (load)="dismissLoad()"></iframe>
+</ion-content>

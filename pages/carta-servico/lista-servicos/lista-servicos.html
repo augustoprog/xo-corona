@@ -1,0 +1,23 @@
+<ion-list *ngIf="!!servicos && servicos.length > 0" no-lines>
+    <ion-list-header>{{ titulo }}</ion-list-header>
+    <ion-item *ngFor="let servico of servicos">
+        <ion-card class="card-servico item-servico" (click)="onClickServico(servico)">
+            <ion-item>
+                <ion-avatar item-start [ngStyle]="{'color': getColor(servico)}">
+                    <ion-icon class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-stack-1x fa-inverse" [ngClass]="getIcon(servico)"></i>
+                    </ion-icon>
+                </ion-avatar>
+                <h2 [ngStyle]="{'color': getColor(servico)}">{{servico.nome}}</h2>
+                <p>{{ servico.listaTemaServico[0]?.temaServico.titulo }}</p>
+                <ion-badge color="primary" item-end *ngIf="servico.flagTotalmenteOnline" (click)="onClickWWWServico(servico); $event.stopPropagation()">
+                    www
+                </ion-badge>
+            </ion-item>
+            <ion-card-content *ngIf="!!servico.categoria">
+                <h2>{{servico.categoria.orgao.nome}}</h2>
+            </ion-card-content>
+        </ion-card>
+    </ion-item>
+</ion-list>

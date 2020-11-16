@@ -1,0 +1,50 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding class="border-bottom-pe">
+  <div class="main content-form">
+    <div class="content-middle">
+      <h1 class="content-logo">
+        <img src="assets/logo-pe-mobile.svg" class="img-fluid" />
+      </h1>
+      <form action="" novalidate #form="ngForm">
+        <div class="input-group mb-2">
+          <input type="email" [(ngModel)]="login" email name="login" required [customMaxLength]="50" class="form-control" placeholder="E-mail" autocomplete="off"
+            #username="ngModel" [class.input-invalid]="username.invalid && form.submitted" />
+          <div class="input-group-append">
+            <span class="input-group-text ion ion-person color-blue" [class.input-invalid]="username.invalid && form.submitted"></span>
+          </div>
+        </div>
+        <div class="input-group mb-2">
+          <input type="password" [(ngModel)]="senha" name="senha" required maxlength="32" class="form-control" placeholder="Senha" autocomplete="off"
+            #pass="ngModel" [class.input-invalid]="pass.invalid && form.submitted" />
+          <div class="input-group-append">
+            <span class="input-group-text ion ion-ios-locked-outline color-blue" [class.input-invalid]="pass.invalid && form.submitted"></span>
+          </div>
+        </div>
+        <button ion-button round color="primary" class="mb-4" block (click)="logar(form)" ([attr.disabled])="offline" ([class.button-disabled])="offline">Entrar</button>
+        <button ion-button round type="button" class="border border-primary mb-4" clear block (click)="entrar()" ([attr.disabled])="offline"
+          ([class.button-disabled])="offline">Acesso Anônimo</button>
+      </form>
+      <!-- end form -->
+      <!-- <button ion-button block round outline color="dark" block (click)="navHome()" ([attr.disabled])="offline" ([class.button-disabled])="offline">Cadastrar</button> -->
+      <p class="text-center">
+        <a href="javascript:;" (click)="navEsqueciSenha()" class="font-14 color-default">Esqueceu sua senha ?</a>
+      </p>
+
+      <hr>
+
+      <p class="mb-0 font-13 color-default text-center">
+        Ainda não tem conta?
+        <a href="javascript:;" class="font-13 text-uppercase color-blue font-weight-bold ml-3" (click)="navHome()">CADASTRE-SE</a>
+      </p>
+
+    </div>
+    <!-- end content-middle -->
+  </div>
+  <!-- end main -->
+</ion-content>
